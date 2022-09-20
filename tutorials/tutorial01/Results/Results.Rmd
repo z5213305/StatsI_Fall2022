@@ -12,7 +12,7 @@ knitr::opts_knit$set(root.dir = "..")
 
 ## Introduction
 
-Give a brief introduction of the research question, and how you will answer it.
+Give a brief introduction of the research question(s), and how you will answer them.
 
 ## Data
 
@@ -27,9 +27,23 @@ data <- read.csv("Data/height.csv")
 
 ## Analysis
 
-Describe how we analysed the data. You might wish to add a snippet of code within your analysis, such as `r round(mean(data$height), 2)`. Include below a relevant visualisation.
+Describe how we analysed the data. You might wish to add a snippet of code within your analysis, such as `r round(mean(data$height), 2)`. 
+
+Include below a relevant visualisation for the mean. 
 
 ```{r data visualisation, echo = FALSE}
+
+```
+
+Let's also include some analysis of whether men and women are, on average, of different heights. We might add the output of the t test in a chunk
+
+```{r t test}
+
+```
+
+And also a visualisation - the box plot would be good here.
+
+```{r box plot, echo = FALSE}
 
 ```
 
