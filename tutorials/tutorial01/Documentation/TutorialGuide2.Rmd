@@ -1,5 +1,5 @@
 ---
-title: "TutorialGuide2"
+title: "Tutorial Guide for Stats I Wk 2"
 author: "Martyn Egan"
 date: "2022-09-21"
 output: html_document
