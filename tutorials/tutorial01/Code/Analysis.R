@@ -85,9 +85,11 @@ boxplot(data$height ~ data$sex_f, # here we use formula notation to group
         ylab = "cm",
         xlab = "")
 # By looking at the boxplot, what might we conclude?
+# Boxplot provide a good visualization and indication of whether if there 
+# is a significant differences
 
 # Formulate our null hypothesis:
-# What is our null hypothesis? 
+# What is our null hypothesis? There is no difference
 # Where do we set alpha? (i.e. rejecting null hypothesis when we shouldn't; 
 # note that we don't get to decide beta - i.e. the probability of incorrectly 
 # accepting the null hypothesis)
