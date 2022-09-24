@@ -12,15 +12,14 @@ getwd()
 ################################################################################
 ##### Question 1 #####
 ### Create data set
-y <-  c (105 , 69 , 86 , 100 , 82 , 111 , 104 , 110 , 87 , 108 , 87 , 90 , 94 , 113 , 112 , 98 ,
-        80 , 97 , 95 , 111 , 114 , 89 , 95 , 126 , 98)
+y <-  c (105 , 69 , 86 , 100 , 82 , 111 , 104 , 110 , 87 , 108 , 87 , 90 , 94 , 113 , 112 , 98 , 80 , 97 , 95 , 111 , 114 , 89 , 95 , 126 , 98)
 
 ###### 1. Find 90% confidence interval for the average student IQ in the school
 ### 1.1. Calculate mean
-#Calculation of mean using R
-ybar_r_cal <- mean(y) 
 #Manual calculation of mean
 ybar_mnl <- sum(y)/length(y)
+#Calculation of mean using R
+ybar_r_cal <- mean(y) 
 #Check mean
 ybar_r_cal == ybar_mnl
 
