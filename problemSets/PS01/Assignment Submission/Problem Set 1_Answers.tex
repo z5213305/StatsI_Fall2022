@@ -1,0 +1,91 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{graphicx,textcomp}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{endnotes}
+\usepackage{lscape}
+\newtheorem{com}{Comment}
+\usepackage{float}
+\usepackage{hyperref}
+\newtheorem{lem} {Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{cor}{Corollary}
+\newtheorem{obs}{Observation}
+\usepackage[compact]{titlesec}
+\usepackage{dcolumn}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\definecolor{light-gray}{gray}{0.65}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+\newcommand{\Sref}[1]{Section~\ref{#1}}
+
+\title{Problem Set 1 Submission}
+\date{Duc Minh, VU}
+\author{Applied Stats/Quant Methods 1}
+
+\begin{document}
+\maketitle
+\section*{Question 1: Education}
+\noindent Data will first be loaded or in this case manually constructed: 
+
+\lstinputlisting[language=R, firstline=15, lastline=15]{Problem Set 1_R_Code.R}
+
+\begin{enumerate} 
+	\item Calculation of 90\% confidence interval for student IQ
+	\begin{enumerate}
+		\item Step 1: Calculation of the sample mean:\\
+		$\bullet$ Calculation of sample mean manually
+		\lstinputlisting[language=R, firstline=20, lastline=20]{Problem Set 1_R_Code.R}
+		The sample mean for the IQ score calculated manually is 98.44 \\
+		$\bullet$ Calculation of sample mean using R
+		\lstinputlisting[language=R, firstline=22, lastline=22]{Problem Set 1_R_Code.R}
+		The sample mean for the IQ score calculated using R is also 98.44
+		\item Step 2: Calculation of the sample variance:\\
+	\end{enumerate} 
+\end{enumerate} 
+
+$\bullet$ 
+ 
+
+\end{document}
