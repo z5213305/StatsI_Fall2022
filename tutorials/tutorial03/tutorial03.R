@@ -17,7 +17,7 @@ summary(dat)
 # Wrangling the dataset
 #######################
 
-# Explore the `genre` columns. How many unique values does it 
+# Explore the `genre` column. How many unique values does it 
 # have? Try using the as.factor() function to transform it to
 # a factor.
 
@@ -26,8 +26,8 @@ summary(dat)
 
 # The ifelse() function can be useful for transforming values,
 # which then allows us to transform the class of the vector.
-# Read the help file on ifelse() and try to use it on `top200_box`
-# to transform "No" to FALSE and "Yes" to TRUE.
+# Read the help file on ifelse() and try to use it on 
+#`top200_box` to transform "No" to FALSE and "Yes" to TRUE.
 
 ######################
 # Exploratory Analysis
