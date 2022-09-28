@@ -390,7 +390,7 @@ the <code>chisq.test()</code> function.</li>
 <ol style="list-style-type: decimal">
 <li>Improving our data wrangling skills.</li>
 <li>Working with R and Latex together.</li>
-<li>Creating a pdf from R and pushing to github.</li>
+<li>Creating a pdf in Latex and pushing to github.</li>
 </ol>
 <p>Finally, we will be revising the importance of the chi square
 distribution for testing the statistical significance of categorical
@@ -404,9 +404,9 @@ dataset, which is also available in the top level directory
 repository.</p>
 <p>The <code>movies.csv</code> dataset contains 651 observations of 32
 variables, including film title, genre, studio, main actors, and
-variables relating to audience appreciation.</p>
+variables relating to critical appreciation.</p>
 <p>Many of these variables are categorical. It could be that dramas, for
-instance, consistently receive higher audience appreciation. Yet how do
+instance, consistently receive higher critical appreciation. Yet how do
 we tell if the distribution of two (or more) categorical variables such
 as these is statistically significant?</p>
 <p>In practice, we work along a similar line of reasoning to a
@@ -422,11 +422,11 @@ corresponding number of observations for each pair of categories,
 e.g. blonde hair and blue eyes, brown hair and brown eyes, etc.</p>
 <pre><code>##         eyes
 ## hair     blue brown green grey Sum
-##   black     8     4     4    7  23
-##   blonde    3     5     9    5  22
-##   brown    10     7     7    8  32
-##   red       9     4     5    5  23
-##   Sum      30    20    25   25 100</code></pre>
+##   black     6     6     8    4  24
+##   blonde    9     6     5    3  23
+##   brown     2     7    10   10  29
+##   red       4     4    12    4  24
+##   Sum      21    23    35   21 100</code></pre>
 <p>As with the hypothesis test we performed last week, we begin again
 with a null hypothesis, which is that the distribution of the two
 categories against each other should be essentially random. In practice,
@@ -440,14 +440,17 @@ expected,</li>
 <li>Summing together all these values across the table.</li>
 </ol>
 <p>When we do this we get a single number. If that number exceeds a
-critical threshold, we reject the null hypothesis.</p>
+critical threshold, we reject the null hypothesis. (Note: the expected
+value for each cell is calculated by multiplying the row total by the
+column total, then dividing by the grand total. It is not just the
+average!)</p>
 <pre><code>## Warning in chisq.test(table(hair, eyes)): Chi-squared approximation may be
 ## incorrect</code></pre>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table(hair, eyes)
-## X-squared = 6.4871, df = 9, p-value = 0.6903</code></pre>
+## X-squared = 13.669, df = 9, p-value = 0.1346</code></pre>
 <p>As with z tests and normal distributions, and t tests and t
 distributions, the critical threshold we are looking for can once again
 be visualised in the form of a probability density function (see above).
@@ -501,7 +504,7 @@ class.</p>
 <div id="step-3." class="section level1">
 <h1>Step 3.</h1>
 <p>Next we will focus on how to create contingency tables, and visualise
-categorical variables using <code>ggplot</code>.</p>
+categorical variables using R’s base plotting functions.</p>
 </div>
 <div id="step-4." class="section level1">
 <h1>Step 4.</h1>

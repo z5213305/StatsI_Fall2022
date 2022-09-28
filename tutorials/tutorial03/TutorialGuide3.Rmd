@@ -39,7 +39,7 @@ We will also learn some more data science skills, including:
 
 1.  Improving our data wrangling skills.
 2.  Working with R and Latex together.
-3.  Creating a pdf from R and pushing to github.
+3.  Creating a pdf in Latex and pushing to github.
 
 Finally, we will be revising the importance of the chi square distribution for testing the statistical significance of categorical data.
 
@@ -47,9 +47,9 @@ Finally, we will be revising the importance of the chi square distribution for t
 
 In today's class we will be working with the `movies.csv` dataset, which is also available in the top level directory `datasets` in the `StatsI_Fall2022` github repository.
 
-The `movies.csv` dataset contains 651 observations of 32 variables, including film title, genre, studio, main actors, and variables relating to audience appreciation.
+The `movies.csv` dataset contains 651 observations of 32 variables, including film title, genre, studio, main actors, and variables relating to critical appreciation.
 
-Many of these variables are categorical. It could be that dramas, for instance, consistently receive higher audience appreciation. Yet how do we tell if the distribution of two (or more) categorical variables such as these is statistically significant?
+Many of these variables are categorical. It could be that dramas, for instance, consistently receive higher critical appreciation. Yet how do we tell if the distribution of two (or more) categorical variables such as these is statistically significant?
 
 In practice, we work along a similar line of reasoning to a continuous variable. Last week we tested to see if two means - the average heights of men and women in our sample - were drawn from the same distribution, or if they were sufficiently far apart for us to conclude they represented different distributions.
 
@@ -78,7 +78,7 @@ As with the hypothesis test we performed last week, we begin again with a null h
 4. Dividing that by the expected value,
 5. Summing together all these values across the table. 
 
-When we do this we get a single number. If that number exceeds a critical threshold, we reject the null hypothesis.
+When we do this we get a single number. If that number exceeds a critical threshold, we reject the null hypothesis. (Note: the expected value for each cell is calculated by multiplying the row total by the column total, then dividing by the grand total. It is not just the average!)
 
 ```{r chi square, echo = FALSE}
 chisq.test(table(hair,eyes))
@@ -111,7 +111,7 @@ An important skill in wrangling data is to be able to change a column (or vector
 
 # Step 3.
 
-Next we will focus on how to create contingency tables, and visualise categorical variables using `ggplot`.
+Next we will focus on how to create contingency tables, and visualise categorical variables using R's base plotting functions.
 
 # Step 4.
 
