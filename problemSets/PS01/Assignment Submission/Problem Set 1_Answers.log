@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8.28) (preloaded format=pdflatex 2022.9.23)  23 SEP 2022 19:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8.28) (preloaded format=pdflatex 2022.9.23)  28 SEP 2022 11:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -885,47 +885,104 @@ File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
 Package: listings 2020/03/24 1.8d (Carsten Heinz)
 
+(C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mathtools.sty
+Package: mathtools 2022/06/29 v1.29 mathematical typesetting tools
+(C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count339
+\calc@Bcount=\count340
+\calc@Adimen=\dimen316
+\calc@Bdimen=\dimen317
+\calc@Askip=\skip65
+\calc@Bskip=\skip66
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count341
+\calc@Cskip=\skip67
+)
+(C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mhsetup.sty
+Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
+)
+\g_MT_multlinerow_int=\count342
+\l_MT_multwidth_dim=\dimen318
+\origjot=\skip68
+\l_MT_shortvdotswithinadjustabove_dim=\dimen319
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen320
+\l_MT_above_intertext_sep=\dimen321
+\l_MT_below_intertext_sep=\dimen322
+\l_MT_above_shortintertext_sep=\dimen323
+\l_MT_below_shortintertext_sep=\dimen324
+\xmathstrut@box=\box76
+\xmathstrut@dim=\dimen325
+) (C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex/generic/soul\soul.sty
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks53
+\SOUL@lasttoken=\toks54
+\SOUL@cmds=\toks55
+\SOUL@buffer=\toks56
+\SOUL@token=\toks57
+\SOUL@spaceskip=\skip69
+\SOUL@ttwidth=\dimen326
+\SOUL@uldp=\dimen327
+\SOUL@ulht=\dimen328
+)
 (C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2022-08-30 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count339
-\l__pdf_internal_box=\box76
-) (Problem Set 1_Answers.aux)
+\l__color_backend_stack_int=\count343
+\l__pdf_internal_box=\box77
+) (Problem Set 1_Answers.aux
+
+LaTeX Warning: Label `fig:plot_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:plot_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:plot_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:plot_1' multiply defined.
+
+
+LaTeX Warning: Label `fig:plot_1' multiply defined.
+
+)
 \openout1 = `"Problem Set 1_Answers.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
 
 (C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count340
-\scratchdimen=\dimen316
-\scratchbox=\box77
-\nofMPsegments=\count341
-\nofMParguments=\count342
-\everyMPshowfont=\toks53
-\MPscratchCnt=\count343
-\MPscratchDim=\dimen317
-\MPnumerator=\count344
-\makeMPintoPDFobject=\count345
-\everyMPtoPDFconversion=\toks54
+\scratchcounter=\count344
+\scratchdimen=\dimen329
+\scratchbox=\box78
+\nofMPsegments=\count345
+\nofMParguments=\count346
+\everyMPshowfont=\toks58
+\MPscratchCnt=\count347
+\MPscratchDim=\dimen330
+\MPnumerator=\count348
+\makeMPintoPDFobject=\count349
+\everyMPtoPDFconversion=\toks59
 )
 (C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
 ase.sty
@@ -937,19 +994,19 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 67.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 72.
 
  (C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 67.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 72.
 
 
 (C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Package xypdf Info: Line width: 0.47998pt on input line 67.
-Package hyperref Info: Link coloring OFF on input line 67.
+Package xypdf Info: Line width: 0.47998pt on input line 72.
+Package hyperref Info: Link coloring OFF on input line 72.
 
 (Problem Set 1_Answers.out) (Problem Set 1_Answers.out)
 \@outlinefile=\write7
@@ -958,7 +1015,7 @@ Package hyperref Info: Link coloring OFF on input line 67.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count346
+\c@lstlisting=\count350
 
 (C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
@@ -970,7 +1027,7 @@ File: lstlang2.sty 2020/03/24 1.8d listings language file
 File: lstlang3.sty 2020/03/24 1.8d listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 72.
+nput line 77.
 
 (Problem Set 1_R_Code.R
 consecutive:
@@ -986,39 +1043,147 @@ LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
 consecutive:
 ) (Problem Set 1_R_Code.R
 consecutive:
-)
-Underfull \hbox (badness 10000) in paragraph at lines 84--85
-
- []
-
-[1
+) (Problem Set 1_R_Code.R
+consecutive:
+) (Problem Set 1_R_Code.R
+consecutive:
+) (Problem Set 1_R_Code.R
+consecutive:
+) [1
 
 {C:/Users/Admin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-(Problem Set 1_Answers.aux)
+(Problem Set 1_R_Code.R
+consecutive:
+) (Problem Set 1_R_Code.R
+consecutive:
+) (Problem Set 1_R_Code.R
+consecutive:
+) (Problem Set 1_R_Code.R
+consecutive:
+) [2]
+LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <12> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 134.
+ (Problem Set 1_R_Code.R
+consecutive:
+) (Problem Set 1_R_Code.R
+consecutive:
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 150.
+<C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignment Su
+bmission/Graph/1.corr_plot_all_vars.png, id=57, 602.25pt x 351.3125pt>
+File: C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignme
+nt Submission/Graph/1.corr_plot_all_vars.png Graphic file (type png)
+<use C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignmen
+t Submission/Graph/1.corr_plot_all_vars.png>
+Package pdftex.def Info: C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/proble
+mSets/PS01/Assignment Submission/Graph/1.corr_plot_all_vars.png  used on input 
+line 163.
+(pdftex.def)             Requested size: 399.29463pt x 232.92834pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignment Su
+bmission/Graph/1.1.corr_plot_Y_and_X1.png, id=58, 602.25pt x 351.3125pt>
+File: C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignme
+nt Submission/Graph/1.1.corr_plot_Y_and_X1.png Graphic file (type png)
+<use C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignmen
+t Submission/Graph/1.1.corr_plot_Y_and_X1.png>
+Package pdftex.def Info: C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/proble
+mSets/PS01/Assignment Submission/Graph/1.1.corr_plot_Y_and_X1.png  used on inpu
+t line 172.
+(pdftex.def)             Requested size: 399.29463pt x 232.92834pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignment Su
+bmission/Graph/1.2.corr_plot_Y_and_X2.png, id=59, 602.25pt x 351.3125pt>
+File: C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignme
+nt Submission/Graph/1.2.corr_plot_Y_and_X2.png Graphic file (type png)
+<use C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignmen
+t Submission/Graph/1.2.corr_plot_Y_and_X2.png>
+Package pdftex.def Info: C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/proble
+mSets/PS01/Assignment Submission/Graph/1.2.corr_plot_Y_and_X2.png  used on inpu
+t line 179.
+(pdftex.def)             Requested size: 399.29463pt x 232.92834pt.
+[3] [4 <C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assign
+ment Submission/Graph/1.corr_plot_all_vars.png> <C:/Users/Admin/Documents/GitHu
+b/StatsI_Fall2022/problemSets/PS01/Assignment Submission/Graph/1.1.corr_plot_Y_
+and_X1.png>]
+<C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignment Su
+bmission/Graph/1.3.corr_plot_Y_and_X3.png, id=87, 602.25pt x 351.3125pt>
+File: C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignme
+nt Submission/Graph/1.3.corr_plot_Y_and_X3.png Graphic file (type png)
+<use C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignmen
+t Submission/Graph/1.3.corr_plot_Y_and_X3.png>
+Package pdftex.def Info: C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/proble
+mSets/PS01/Assignment Submission/Graph/1.3.corr_plot_Y_and_X3.png  used on inpu
+t line 186.
+(pdftex.def)             Requested size: 399.29463pt x 232.92834pt.
+<C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignment Su
+bmission/Graph/1.4.corr_plot_X1_and_X2.png, id=88, 602.25pt x 351.3125pt>
+File: C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignme
+nt Submission/Graph/1.4.corr_plot_X1_and_X2.png Graphic file (type png)
+<use C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignmen
+t Submission/Graph/1.4.corr_plot_X1_and_X2.png>
+Package pdftex.def Info: C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/proble
+mSets/PS01/Assignment Submission/Graph/1.4.corr_plot_X1_and_X2.png  used on inp
+ut line 193.
+(pdftex.def)             Requested size: 399.29463pt x 232.92834pt.
+ [5 <C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignmen
+t Submission/Graph/1.2.corr_plot_Y_and_X2.png> <C:/Users/Admin/Documents/GitHub
+/StatsI_Fall2022/problemSets/PS01/Assignment Submission/Graph/1.3.corr_plot_Y_a
+nd_X3.png>]
+<C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignment Su
+bmission/Graph/1.5.corr_plot_X1_and_X3.png, id=98, 602.25pt x 351.3125pt>
+File: C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignme
+nt Submission/Graph/1.5.corr_plot_X1_and_X3.png Graphic file (type png)
+<use C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignmen
+t Submission/Graph/1.5.corr_plot_X1_and_X3.png>
+Package pdftex.def Info: C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/proble
+mSets/PS01/Assignment Submission/Graph/1.5.corr_plot_X1_and_X3.png  used on inp
+ut line 200.
+(pdftex.def)             Requested size: 399.29463pt x 232.92834pt.
+ [6 <C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignmen
+t Submission/Graph/1.4.corr_plot_X1_and_X2.png> <C:/Users/Admin/Documents/GitHu
+b/StatsI_Fall2022/problemSets/PS01/Assignment Submission/Graph/1.5.corr_plot_X1
+_and_X3.png>] (Problem Set 1_Answers.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `"Problem Set 1_Answers".out' has not changed
 .
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 28352 strings out of 475389
- 507686 string characters out of 2777000
- 1100011 words of memory out of 3000000
- 49215 multiletter control sequences out of 15000+600000
- 479192 words of font info for 70 fonts, out of 8000000 for 9000
+ 29347 strings out of 475389
+ 529681 string characters out of 2777000
+ 1161237 words of memory out of 3000000
+ 50109 multiletter control sequences out of 15000+600000
+ 484014 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,6n,89p,3257b,2127s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 84i,8n,89p,3257b,2127s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
-1000.pk><C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmbx12.pfb><C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmmi10.pfb><C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmr10.pfb><C:/Users/Admin/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Admin/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Admin/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Admin/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on "Problem Set 1_Answers.pdf" (1 page, 85993 bytes).
+1200.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\tcrm1000.pk><C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmbx12.pfb><C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmbx8.pfb><C:/Users/Admin/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Admin/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Admin/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/Admin/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Ad
+min/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
+Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.
+pfb><C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmr6.pfb><C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmr8.pfb><C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb><C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmti12.pfb><C:/Users/Admin/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on "Problem Set 1_Answers.pdf" (6 pages, 202390 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
- 11 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 187 PDF objects out of 1000 (max. 8388607)
+ 58 named destinations out of 1000 (max. 500000)
+ 43 words of extra memory for PDF output out of 10000 (max. 10000000)
 

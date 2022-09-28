@@ -6,7 +6,7 @@
 library(tidyverse) # load our packages here
 
 # Import data
-data <- read.csv("Data/height.csv")
+data <- read.csv("C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/tutorials/tutorial01/Data/height.csv")
 
 # Explore data
 summary(data)
