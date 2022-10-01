@@ -40,25 +40,19 @@ area_right <- (1 - 0.90)/2#Area under the curve to the right
 area_left <- 0.90/2
 
 ### 1.4. Find Z-score associated with that number
-z90 <- qnorm(area_right, lower.tail = FALSE)
 t10 <- qt(p=0.1/2, df = length(y) - 1, lower.tail = F) #t-score
-?qt()
 
 ### 1.5. Use these values to calculate confidence interval
-#Z-score
 SE <- sd_mnl/sqrt(length(y))
-lower_90 <- ybar_mnl - (z90 * sd_mnl/sqrt(length(y)))
-upper_90 <- ybar_mnl + (z90 * sd_mnl/sqrt(length(y)))
-conf_int <- c(lower_90, upper_90)
 #T-score
-lower_90_t <- ybar_mnl - (t10 * sd_mnl/sqrt(length(y)))
-upper_90_t <- ybar_mnl + (t10 * sd_mnl/sqrt(length(y)))
-conf_int_t <- c(lower_90_t, upper_90_t)
+lower_90_t <- ybar_mnl - (t10 * SE)
+upper_90_t <- ybar_mnl + (t10 * SE)
+conf_int_t <- c(round(lower_90_t,2), round(upper_90_t,2))
 
 ###### 2. Whether student average student IQ is higher than average score (100) 
 ### 2.1. Set up hypothesis
-#H0: ybar lesser than or equal to 100
-#H1: ybar is larger than 100
+#H0: mu lesser than or equal to 100
+#H1: mu is larger than 100
 
 ### 2.2. Calculate test statistic
 test_stat <- (ybar_mnl-100)/(SE)
@@ -68,9 +62,9 @@ test_stat <- (ybar_mnl-100)/(SE)
 p.value_t_val <- pt(test_stat,df=length(y)-1,lower.tail = F)
 
 ### 2.4. Draw a conclusion
-p.value_z_val < 0.05
 p.value_t_val < 0.05
 #Fail to reject the null hypothesis
+
 
 ################################################################################
 ##### Question 2 #####
@@ -87,17 +81,18 @@ png(filename = "1.corr_plot_all_vars.png",
     height = 350)
 pairs(~X1 + X2 + X3 + Y, data = data.exp, upper.panel = NULL)
 dev.off()
+cor(subset(data.exp,select = c(Y,X1,X2,X3))) #correlation matrix
 
-cor(subset(data.exp,select = c(Y,X1,X2,X3)))
 # 1.1 Relationship between Y and X1
 png(filename = "1.1.corr_plot_Y_and_X1.png",
     width = 600,
     height = 350)
 ggplot(data.exp,aes(x = X1, y = Y)) + 
-  geom_point() +
+  geom_point() + 
   labs(x = "X1-per capita personal income", 
        y = "Y-per capita expenditure on housing assistance")
 dev.off()
+cor_Y_X1 = cor(data.exp$Y,data.exp$X1)
 # 1.2 Relationship between Y and X2
 png(filename = "1.2.corr_plot_Y_and_X2.png",
     width = 600,
@@ -107,6 +102,7 @@ ggplot(data.exp,aes(x = X2, y = Y)) +
   labs(x = "X2-Residents per 100,000 that are financially insecure", 
        y = "Y-per capita expenditure on housing assistance")
 dev.off()
+cor_Y_X2 = cor(data.exp$Y,data.exp$X2)
 # 1.3 Relationship between Y and X3
 png(filename = "1.3.corr_plot_Y_and_X3.png",
     width = 600,
@@ -116,7 +112,7 @@ ggplot(data.exp,aes(x = X3, y = Y)) +
   labs(x = "X3-People per 1,000 residing in urban areas", 
        y = "Y-per capita expenditure on housing assistance")
 dev.off()
-dev.off()
+cor_Y_X3 = cor(data.exp$Y,data.exp$X3)
 # 1.4 Relationship between X1 and X2
 png(filename = "1.4.corr_plot_X1_and_X2.png",
     width = 600,
@@ -126,6 +122,7 @@ ggplot(data.exp,aes(x = X1, y = X2)) +
   labs(x = "X1-per capita personal income", 
        y = "X2-Residents per 100,000 that are financially insecure")
 dev.off()
+cor_X1_X2 = cor(data.exp$X1,data.exp$X2)
 # 1.5 Relationship between X1 and X3
 png(filename = "1.5.corr_plot_X1_and_X3.png",
     width = 600,
@@ -135,6 +132,7 @@ ggplot(data.exp,aes(x = X1, y = X3)) +
   labs(x = "X1-per capita personal income", 
        y = "X3-People per 1,000 residing in urban areas")
 dev.off()
+cor_X1_X3 = cor(data.exp$X1,data.exp$X3)
 # 1.6 Relationship between X2 and X3
 png(filename = "1.6.corr_plot_X2_and_X3.png",
     width = 600,
@@ -144,9 +142,10 @@ ggplot(data.exp,aes(x = X2, y = X3)) +
   labs(x = "X2-Residents per 100,000 that are financially insecure", 
        y = "X3-People per 1,000 residing in urban areas") 
 dev.off()
-
+cor_X2_X3 = cor(data.exp$X2,data.exp$X3)
 
 ### 2. Plot the relationships between Y and Region
+# Assigning the region name to the the region code
 data.exp$Region_name <- ifelse(data.exp$Region == 1, "1-Northeast",
                                ifelse(data.exp$Region == 2, "2-North Central",
                                       ifelse(data.exp$Region == 3, "3-South", 
@@ -155,12 +154,22 @@ data.exp$Region_name <- ifelse(data.exp$Region == 1, "1-Northeast",
 png(filename = "2.corr_plot_Y_and_Region.png",
     width = 600,
     height = 350)
+#Plotting the data
 ggplot(data.exp,
-       aes(x = Region_name, y = Y, group = Region_name)) + 
-  geom_boxplot() +
-  labs(x = "Regions", y = "Y-per capita expenditure on housing assistance")
+       aes(x = Region_name, y = Y, group = Region_name, color = Region_name)) + 
+  geom_boxplot() + stat_summary(fun=mean,
+                                geom='point', 
+                                shape=4, size = 2, 
+                                # show.legend = FALSE
+                                aes( colour = "Mean")
+                                ) +
+  labs(x = "Regions", 
+       y = "Y-per capita expenditure on housing assistance",
+       color = "Region name") + 
+       theme(legend.position="none")
 dev.off()
 
+#Calculating summary for each region's per capita spending
 region_summary <- data.exp %>% 
   group_by(Region, Region_name) %>% 
   summarise(ave_per_capita = mean(Y), max_per_cap = max(Y), min_per_cap = min(Y))
@@ -180,7 +189,7 @@ png(filename = "3.corr_plot_Y_and_X1_and_Region.png",
     width = 600,
     height = 350)
 ggplot(data.exp,aes(x = X1, y = Y)) + 
-  geom_point(aes(color = Region_name, shape = Region_name)) + 
+  geom_point(aes(color = Region_name, shape = Region_name), size = 4) + 
   theme(legend.position = "top") +
   scale_color_manual(values = c("#D16103", "#56B4E9", "#FFDB6D", "#009E73")) +
   scale_shape_manual(values=c(2, 3, 18, 8)) +

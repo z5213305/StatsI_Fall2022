@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8.28) (preloaded format=pdflatex 2022.9.23)  28 SEP 2022 08:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8.28) (preloaded format=pdflatex 2022.9.23)  28 SEP 2022 14:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -162,8 +162,7 @@ tex.def
 File: l3backend-pdftex.def 2022-08-30 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count279
 \l__pdf_internal_box=\box55
-)
-No file results.aux.
+) (results.aux)
 \openout1 = `results.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
@@ -271,8 +270,8 @@ the matching `\fi'. I've inserted a `\fi'; this might work.
 
  
 Here is how much of TeX's memory you used:
- 4959 strings out of 475389
- 69819 string characters out of 2777000
+ 4961 strings out of 475389
+ 69910 string characters out of 2777000
  585184 words of memory out of 3000000
  26307 multiletter control sequences out of 15000+600000
  473230 words of font info for 44 fonts, out of 8000000 for 9000

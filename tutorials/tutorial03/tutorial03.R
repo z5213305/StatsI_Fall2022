@@ -20,14 +20,22 @@ summary(dat)
 # Explore the `genre` column. How many unique values does it 
 # have? Try using the as.factor() function to transform it to
 # a factor.
+unique(dat$genre)
+head(dat$genre)
+dat$genre.f <- as.factor(dat$genre)
+
 
 # Explore the `top200_box` column. Try using the as.logical() 
 # function to transform it. What goes wrong?
+head(dat$top200_box)
+dat$top200_box_log <- as.logical(dat$top200_box)
 
 # The ifelse() function can be useful for transforming values,
 # which then allows us to transform the class of the vector.
 # Read the help file on ifelse() and try to use it on 
 #`top200_box` to transform "No" to FALSE and "Yes" to TRUE.
+dat$top200_box_log_2 <- ifelse(dat$top200_box == "TRUE", "Yes","No")
+as.logical(dat$top200_box_log)
 
 ######################
 # Exploratory Analysis
@@ -57,7 +65,7 @@ with(dat, addmargins(table(genre, critics_rating)))
 with(dat, prop.table(table(genre, critics_rating), margin = 1))
 
 # Try to find the proportion along the columns:
-
+with(dat, prop.table(table(genre, critics_rating), margin = 2))
 
 # Total proportion:
 with(dat, prop.table(table(genre, critics_rating)))
@@ -152,8 +160,8 @@ dev.off()
 # Look at the help file for the chisq.test() function. How does 
 # it work? Let's call it on the contingency table we used for 
 # the bar plot above.
-
-chi <- 
+?chisq.test()
+chi <- chisq.test(table(dat_mini$genre, dat_mini$critics_rating))
 
 # Remember, when we assign the result of a test to an object,
 # we can then access all the information which belongs to that
@@ -163,3 +171,8 @@ ls(chi)
 chi$residuals
 
 # How do you interpret these results? 
+# Chi square is 86.291 => meet critical threshold 
+# => Conclusion: reject the null hypothesis (they are statsticly independent)
+# => there is some dependent 
+# Look at the residuals (how many sd from the expected) and see which one meet the 
+# threshold. Nothin significant for certified fresh.
