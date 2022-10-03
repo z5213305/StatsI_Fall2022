@@ -74,40 +74,40 @@ TCD StudentID: 22996761 / UCD StudentID: 19211157}
 \section*{Question 1: Education}
 \noindent Data will first be loaded or in this case manually constructed: 
 
-\lstinputlisting[language=R, firstline=15, lastline=15]{Problem Set 1_R_Code.R}
+\lstinputlisting[language=R, firstline=15, lastline=15]{PS1_answers_Duc Minh, Vu.R}
 
 \begin{enumerate} 
 	\item \textbf{Calculation of 90\% confidence interval for student IQ}
 	\begin{enumerate}
 		\item \textit{Step 1: Calculation of the sample mean:}\\
 		$\bullet$ Calculation of sample mean manually:
-			\lstinputlisting[language=R, firstline=20, lastline=20]{Problem Set 1_R_Code.R}
+			\lstinputlisting[language=R, firstline=20, lastline=20]{PS1_answers_Duc Minh, Vu.R}
 		The sample mean for the IQ score calculated manually is 98.44. \\
 		$\bullet$ Calculation of sample mean using R:
-			\lstinputlisting[language=R, firstline=22, lastline=22]{Problem Set 1_R_Code.R}
+			\lstinputlisting[language=R, firstline=22, lastline=22]{PS1_answers_Duc Minh, Vu.R}
 		The sample mean for the IQ score calculated using R is also 98.44. \\
 		$\bullet$ Using R to double-check if the manual score is the same as the R-calculated score:
-			\lstinputlisting[language=R, firstline=24, lastline=24]{Problem Set 1_R_Code.R}
+			\lstinputlisting[language=R, firstline=24, lastline=24]{PS1_answers_Duc Minh, Vu.R}
 		\begin{verbatim}
 			[1] TRUE
 		\end{verbatim}
 		R output confirms that the manually caculated mean score is equal to/the same as the R-calculated mean score.
 		\item \textit{Step 2: Calculation of the sample variance and standard deviation:}\\
 		$\bullet$ Manual calculation:
-			\lstinputlisting[language=R, firstline=28, lastline=29]{Problem Set 1_R_Code.R}
+			\lstinputlisting[language=R, firstline=28, lastline=29]{PS1_answers_Duc Minh, Vu.R}
 		The manually caclulated value for the sample variance is 171.42333, and for the standard deviation is 13.0929. \\
 		$\bullet$ Calculation using R:
-			\lstinputlisting[language=R, firstline=31, lastline=32]{Problem Set 1_R_Code.R}
+			\lstinputlisting[language=R, firstline=31, lastline=32]{PS1_answers_Duc Minh, Vu.R}
 		The R-caclulated value for the sample variance and standard deviation is also 171.42333, and 13.0929 respectively.\\
 		$\bullet$ Using R to double-check the results between the manual and the R calculation:
-			\lstinputlisting[language=R, firstline=24, lastline=24]{Problem Set 1_R_Code.R}
+			\lstinputlisting[language=R, firstline=24, lastline=24]{PS1_answers_Duc Minh, Vu.R}
 		\begin{verbatim}
 			[1] TRUE
 		\end{verbatim}
 		R output confirms that the manually caculated score is equal to/the same as the R-calculated score for variance and standard deviation.
 		\item \textit{Step 3: Finding the associated t-score :}\\
 		Since the number of observation in the dataset is 25 which is less than 30, t-distribution is more appropriated as it is more robust for small sample size and violations of the normal population assumptions. Hence, the t-score will be calculated using t-table.
-			\lstinputlisting[language=R, firstline=43, lastline=43]{Problem Set 1_R_Code.R}
+			\lstinputlisting[language=R, firstline=43, lastline=43]{PS1_answers_Duc Minh, Vu.R}
 		The t-score at 90\% confidence level is 1.71
 		\item \textit{Step 4: Caclculating the confidence interval}\\
 		The confidence interval will be calculated as:
@@ -116,9 +116,9 @@ TCD StudentID: 22996761 / UCD StudentID: 19211157}
 		\end{center}
 		Based on the results from the two previous steps, the 25 observations from the IQ test scores are summarized by $\bar{y}$ = 98.44 and \textit{s} = 13.0929. The estimated standard error of the sampling distribution of $\bar{y}$ can be calculated as: 
 			$${SE(Standard Errors) = \frac{\textit{s}}{\sqrt{n}} = \frac{13.0929}{25}}$$
-			\lstinputlisting[language=R, firstline=46, lastline=46]{Problem Set 1_R_Code.R}
+			\lstinputlisting[language=R, firstline=46, lastline=46]{PS1_answers_Duc Minh, Vu.R}
 		Which gives the result of 2.6186 for the standard error using R. The confidence interval is then computed and rounded to 2 decmimal places:
-			\lstinputlisting[language=R, firstline=47, lastline=50]{Problem Set 1_R_Code.R}
+			\lstinputlisting[language=R, firstline=47, lastline=50]{PS1_answers_Duc Minh, Vu.R}
 		\begin{verbatim}
 			> conf_int_t
 			[1]  93.96 102.92
@@ -140,12 +140,12 @@ TCD StudentID: 22996761 / UCD StudentID: 19211157}
 		\item \textit{Calculation of test statistic}\\
 		Based on the value of the sample mean and estimated standard error from the previous parts, the test statistic is
 			$${t = \frac{\bar{y} - \mu\textsubscript{0}}{\textit{se}}} = \frac{98.44 - 100}{2.6186}$$
-			\lstinputlisting[language=R, firstline=58, lastline=58]{Problem Set 1_R_Code.R}
+			\lstinputlisting[language=R, firstline=58, lastline=58]{PS1_answers_Duc Minh, Vu.R}
 		which gives the result of -0.5957.
 		
 		\item \textit{Calculation of P-value}\\
 		For n = 25, the degree freedom is n - 1 = 24. Hence, the probability (P-value) of a t-score above the observed t-score or the right-tail probability abolve -0.5967 is:
-			 \lstinputlisting[language=R, firstline=62, lastline=62]{Problem Set 1_R_Code.R}
+			 \lstinputlisting[language=R, firstline=62, lastline=62]{PS1_answers_Duc Minh, Vu.R}
 		which gives the result P = 0.7215.
 		
 		\item \textit{Conclusion}\\
@@ -156,12 +156,12 @@ TCD StudentID: 22996761 / UCD StudentID: 19211157}
 
 \section*{Question 2: Political Economy}
 First, data is imported into R along with deploying the relevant packages to produce graphs and statistic.
-	\lstinputlisting[language=R, firstline=72, lastline=75]{Problem Set 1_R_Code.R}
+	\lstinputlisting[language=R, firstline=72, lastline=75]{PS1_answers_Duc Minh, Vu.R}
 
-\graphicspath{ {C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignment Submission/Graph} }
+\graphicspath{ {C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/template/PS1_answers_Duc Minh, Vu/Graph} }
 \begin{enumerate} 
 	\item \textbf{The relationships between Y, X1, X2 and X3}
-		\lstinputlisting[language=R, firstline=82, lastline=82]{Problem Set 1_R_Code.R}
+		\lstinputlisting[language=R, firstline=82, lastline=82]{PS1_answers_Duc Minh, Vu.R}
 	Figure 1 contains the scatterplots for all of the relationships between Y, X1, X2 and X3. The subsequent sections will go into detail for each pair of the variables.\\
 		\begin{figure}[H]\centering
 			\caption{\footnotesize Scatterplots of all the relationships between Y, X1, X2 and X3 .}
@@ -169,7 +169,7 @@ First, data is imported into R along with deploying the relevant packages to pro
 			\includegraphics[width=.85\textwidth]{1.corr_plot_all_vars.png}
 		\end{figure}
 	The correlation matrix is also obtained, so the observations from the graph can be cross-check and validated by the correlation coefficents.
-		\lstinputlisting[language=R, firstline=84, lastline=84]{Problem Set 1_R_Code.R}
+		\lstinputlisting[language=R, firstline=84, lastline=84]{PS1_answers_Duc Minh, Vu.R}
 		\begin{verbatim}
 			           Y        X1        X2        X3
 			Y  1.0000000 0.5317212 0.4482876 0.4636787
@@ -180,7 +180,7 @@ First, data is imported into R along with deploying the relevant packages to pro
 		
 	\begin{enumerate}
 		\item The relationship between Y and X1
-			\lstinputlisting[language=R, firstline=90, lastline=93]{Problem Set 1_R_Code.R}
+			\lstinputlisting[language=R, firstline=90, lastline=93]{PS1_answers_Duc Minh, Vu.R}
 		Figure 2 displays the relationship between Per capita expenditure on housing assistance (Y) on the y-axis and Per capita income (X1) on the x-axis. 
 			\begin{figure}[H]\centering
 				\caption{\footnotesize Scatterplot between Y and X1.}
@@ -190,7 +190,7 @@ First, data is imported into R along with deploying the relevant packages to pro
 		Visually, there is positive and linear relationship of weak-moderate strength between the two variables, in which Y tends to increase as X1 increases with a few potential outliers. So as Per capita income increases, Per capita expenditure also increases. This is confirmed by a moderate positive correlation coefficient of  r = 0.53 from the above correlation matrix.
 		
 		\item The relationship between Y and X2
-			\lstinputlisting[language=R, firstline=100, lastline=103]{Problem Set 1_R_Code.R}
+			\lstinputlisting[language=R, firstline=100, lastline=103]{PS1_answers_Duc Minh, Vu.R}
 		Figure 3 displays the relationship between Per capita expenditure on housing assistance (Y) on the y-axis and Number of residents per 100,000 that are "financially insecure" (X2) on the x-axis.
 		\begin{figure}[H]\centering
 			\caption{\footnotesize Scatterplot between Y and X2.}
@@ -200,7 +200,7 @@ First, data is imported into R along with deploying the relevant packages to pro
 		There seems to be a weak, positive and non-linear relationship between Y and X2. Per capita expenditure decrease up until around 300 residents per 100,000 before rising up again, which forms a U-shape concave up relationship. This is confirmed by a weak positive correlation coefficient of r = 0.45.
 		
 		\item The relationship between Y and X3
-			\lstinputlisting[language=R, firstline=110, lastline=113]{Problem Set 1_R_Code.R}
+			\lstinputlisting[language=R, firstline=110, lastline=113]{PS1_answers_Duc Minh, Vu.R}
 		Figure 4 displays the relationship between Per capita expenditure on housing assistance (Y) on the y-axis and Number of people per thousand residing in urban areas (X3) on the x-axis.
 		\begin{figure}[H]\centering
 			\caption{\footnotesize Scatterplot between Y and X3.}
@@ -210,7 +210,7 @@ First, data is imported into R along with deploying the relevant packages to pro
 		From the graph, we can observe a weak, positive and linear relationship between Y and X3, in which Y increases as X3 increases. This is confirmed  by a weak positive correlation coefficient of 0.46. Moreover, there seems to be a presence of clusters in this scatter plot, with X3 = 500 (people per 1,000) as the dividing line. There is a cluster of urban areas with low level of people residing (smaller than 500 per 1,000), and a cluster of urban areas with high level of people residing (larger than 500 per 1,000).
 		
 		\item The relationship between X1 and X2
-			\lstinputlisting[language=R, firstline=120, lastline=123]{Problem Set 1_R_Code.R}
+			\lstinputlisting[language=R, firstline=120, lastline=123]{PS1_answers_Duc Minh, Vu.R}
 		Figure 5 displays the relationship between Per capita income (X1) on the y-axis and Number of residents per 100,000 that are "financially insecure" (X2) on the x-axis.
 		\begin{figure}[H]\centering
 			\caption{\footnotesize Scatterplot between X1 and X2.}
@@ -220,7 +220,7 @@ First, data is imported into R along with deploying the relevant packages to pro
 		There is no clear direction for the points in this scatter plot, and no linear relationship can be detected. As such, there is no clear relationship between X1 and X2. This is confirmed by a very weak correaltion coefficient of 0.21.
 		
 		\item The relationship between X1 and X3
-			\lstinputlisting[language=R, firstline=130, lastline=133]{Problem Set 1_R_Code.R}
+			\lstinputlisting[language=R, firstline=130, lastline=133]{PS1_answers_Duc Minh, Vu.R}
 		Figure 6 displays the relationship between Per capita income (X1) on the y-axis and Number of people per thousand residing in urban areas (X3) on the x-axis.
 		\begin{figure}[H]\centering
 			\caption{\footnotesize Scatterplot between X1 and X3.}
@@ -230,7 +230,7 @@ First, data is imported into R along with deploying the relevant packages to pro
 		A positive, linear relationship of moderate strength can be depicted from Figure 6, as X1 increases when X3 increases with some potential outliers. So, people with higher capita income in a state tend to live more in the urban areas of that state. This relationship is confirmed by a moderate correlation coefficient of 0.59. Some potential clusters are also observed in this scatter plot, with 3 groups. The most visible group is state with "high" (in relation to this dataset) capita income, which is above \$2,250 threshold. The seperation between the "middle" and "low" income group is less visible, with \$1,750 as the separation line between these two clusters.
 		
 		\item The relationship between X2 and X3
-			\lstinputlisting[language=R, firstline=140, lastline=143]{Problem Set 1_R_Code.R}
+			\lstinputlisting[language=R, firstline=140, lastline=143]{PS1_answers_Duc Minh, Vu.R}
 		Figure 7 displays the relationship between Number of residents per 100,000 that are "financially insecure" (X2) on the y-axis and Number of people per thousand residing in urban areas (X3) on the x-axis.
 		\begin{figure}[H]\centering
 			\caption{\footnotesize Scatterplot between X2 and X3.}
@@ -241,8 +241,8 @@ First, data is imported into R along with deploying the relevant packages to pro
 
 	\end{enumerate}
 	\item \textbf{The relationships between Y and different regions} \\
-	\lstinputlisting[language=R, firstline=148, lastline=152]{Problem Set 1_R_Code.R}
-	\lstinputlisting[language=R, firstline=157, lastline=169]{Problem Set 1_R_Code.R}
+	\lstinputlisting[language=R, firstline=148, lastline=152]{PS1_answers_Duc Minh, Vu.R}
+	\lstinputlisting[language=R, firstline=157, lastline=169]{PS1_answers_Duc Minh, Vu.R}
 	Figure 8 displays the relationship between Y and different regions of states in the US in the form of a box plot which shows the distribution of per capita spending expenditure according to each region. The average per capita spending is also calculated and depicted as the symbol "x' in the plot.
 	
 	\begin{figure}[H]\centering
@@ -250,7 +250,7 @@ First, data is imported into R along with deploying the relevant packages to pro
 		\label{fig:plot_1}
 		\includegraphics[width=.85\textwidth]{2.corr_plot_Y_and_Region.png}
 	\end{figure}
-		\lstinputlisting[language=R, firstline=172, lastline=175]{Problem Set 1_R_Code.R}
+		\lstinputlisting[language=R, firstline=172, lastline=175]{PS1_answers_Duc Minh, Vu.R}
 	\begin{verbatim}
 Region Region_name     ave_per_capita max_per_cap min_per_cap
 <int> <chr>                    <dbl>       <int>       <int>
@@ -264,7 +264,7 @@ Region Region_name     ave_per_capita max_per_cap min_per_cap
 	\vspace{1cm}
 	
 	\item \textbf{The relationships between Y and X1 with the inclusion of region}
-		\lstinputlisting[language=R, firstline=191, lastline=199]{Problem Set 1_R_Code.R}
+		\lstinputlisting[language=R, firstline=191, lastline=199]{PS1_answers_Duc Minh, Vu.R}
 	As described earlier in section 1.(a) of this question, Y and X1 as a weak-moderate positve and linear relationship, in which the higher the per capita income in a state, the more that state will spend on its housing assistance per capita. 
 	\begin{figure}[H]\centering
 		\caption{\footnotesize Scatterplot between Y and X1 for different regions.}

@@ -6,8 +6,8 @@
 
 ##### Set working directory #######
 #setwd("C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignment Submission")
-setwd("C:/Users/Admin/Documents/GitHub/StatsI_Fall2022")
-getwd()
+#setwd("C:/Users/Admin/Documents/GitHub/StatsI_Fall2022")
+#getwd()
 
 ################################################################################
 ##### Question 1 #####
@@ -74,7 +74,7 @@ data.exp <- read.table("expenditure.txt", header = T)
 library(ggplot2)
 library(dplyr)
 
-setwd("C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/Assignment Submission/Graph")
+setwd("C:/Users/Admin/Documents/GitHub/StatsI_Fall2022/problemSets/PS01/PS1_answers_Duc Minh, Vu/Graph")
 ### 1. Plot the relationships among Y, X1, X2, X3
 png(filename = "1.corr_plot_all_vars.png",
     width = 600,
