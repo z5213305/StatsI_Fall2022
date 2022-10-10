@@ -1,0 +1,215 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{graphicx,textcomp}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{endnotes}
+\usepackage{lscape}
+\newtheorem{com}{Comment}
+\usepackage{float}
+\usepackage{hyperref}
+\newtheorem{lem} {Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{cor}{Corollary}
+\newtheorem{obs}{Observation}
+\usepackage[compact]{titlesec}
+\usepackage{dcolumn}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\definecolor{light-gray}{gray}{0.65}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{mathtools} 
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color,soul}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+\newcommand{\Sref}[1]{Section~\ref{#1}}
+
+\title{Submission for Problem Set 2}
+\date{Duc Minh, VU \\
+	TCD StudentID: 22996761 / UCD StudentID: 19211157}
+\author{Applied Stats/Quant Methods 1}
+
+\begin{document}
+	\maketitle
+	\section*{Question 1: Political Science}
+	\noindent The data on the police officer's response will first be recreated in R for analysis.
+	\lstinputlisting[language=R, firstline=10, lastline=13]{PS2_answers_Duc Minh, Vu.R}
+	\begin{verbatim}
+            Not Stopped Bribe requested Stopped/given warning
+Upper class          14               6                     7
+Lower class           7               7                     1
+	\end{verbatim}
+
+\begin{enumerate} [(a)]
+	\item \textbf{Calculate the $\chi^2$ test statistic } \\
+	The expected frequency would first need to be calculated, which is the count expected in a cell if the variables were idependent. It equals the product of row and column totals for that cell, divded by the sum total.
+		$$ f\textsubscript{\textit{e}} = \frac{\sum row * \sum column}{\sum N}$$
+	The row, column and sum total are calculated:
+	\lstinputlisting[language=R, firstline=17, lastline=19]{PS2_answers_Duc Minh, Vu.R}
+	which gives the results of:
+	\begin{verbatim}
+		> total
+		[1] 42
+		> row_total
+		Upper class Lower class 
+		27          15 
+		> col_total
+		Not Stopped       Bribe requested Stopped/given warning 
+		21                    13                     8 
+	\end{verbatim}
+	Using these totals, the expected frequencies are then calculated by the above formula:
+	\lstinputlisting[language=R, firstline=21, lastline=24]{PS2_answers_Duc Minh, Vu.R}
+	which gives a table of expected frequency for each cell.
+	\begin{verbatim}
+		            Not Stopped Bribe requested Stopped/given warning
+		Upper class   13.500000        8.357143              5.142857
+		Lower class    7.500000        4.642857              2.857143
+	\end{verbatim}
+	The test statistic is then calculated by using the expected and observed frequencies to summarizes how close the expected frequencies fall to the observed frequencies:
+		$$ \chi^2 = \sum \frac{(f\textsubscript{\textit{o}} - f\textsubscript{\textit{e}})^2}{f\textsubscript{\textit{e}}} = \frac{(14 - 13.5)^2}{13.5} + \frac{(7 - 7.5)^2}{7.5} + ...$$
+	\lstinputlisting[language=R, firstline=27, lastline=28]{PS2_answers_Duc Minh, Vu.R}
+	\begin{verbatim}
+		> mnl_chi_test_stat
+		[1] 3.791168
+	\end{verbatim}
+	which gives a  $\chi^2$ test statistic of 3.7912. To cross check the result, the $\chi^2$ test function in R is also ran, which also gives the same result.
+	\lstinputlisting[language=R, firstline=29, lastline=29]{PS2_answers_Duc Minh, Vu.R}
+	\begin{verbatim}
+		> auto_chi_test_stat
+		
+		Pearson's Chi-squared test
+		
+		data:  crossroad_data_tbl
+		X-squared = 3.7912, df = 2, p-value = 0.1502
+	\end{verbatim}
+
+	\item \textbf{Calculate the p-value from the test statistic and make a conclusion for $\alpha$ = 0.1} \\
+	Firstly, the degree of freedom will be calculated. For a 2x3 table, the degree of freedom is:
+		$$ df = (r - 1)*(c - 1) = (2 - 1)*(3 - 1) = 2$$
+	Using R built in function, the p-value for the test statistic calculated from part (a) for df = 2 is:
+		\lstinputlisting[language=R, firstline=32, lastline=36]{PS2_answers_Duc Minh, Vu.R}
+		\begin{verbatim}
+			> df
+			[1] 2
+			> p_value
+			[1] 0.1502306
+		\end{verbatim}
+	which gives the p-value of 0.1502. Since our p-value is larger than $\alpha$, we fail to reject the null hypothesis that the police officers' class and their bribe behaviour are independent.
+	
+	\item \textbf{Calculate standardized residuals} \\
+	The \textbf{\textit{standardized residual}} for a cell is:
+		$$ z = \frac{f\textsubscript{\textit{o}} - f\textsubscript{\textit{e}}}{se}$$
+	As the obersved and expected frequency are known, the standard error (\textit{se}) of $f\textsubscript{\textit{o}}$ - $f\textsubscript{\textit{e}}$, presuming the null hypothesis is true,  is calculated as:
+		$$ se = \sqrt{f\textsubscript{\textit{e}}*(1 - row \; porportion)*(1 - column \; proportion)}$$
+		\lstinputlisting[language=R, firstline=39, lastline=50]{PS2_answers_Duc Minh, Vu.R}
+	The calculated standard errors for each cell is:
+	\begin{verbatim}
+		> se
+		Not Stopped Bribe requested Stopped/given warning
+		Upper class    1.552648        1.435570              1.219377
+		Lower class    1.552648        1.435570              1.219377
+	\end{verbatim}
+	The standardized residual is then computed using the above formula to give the results of:
+		\lstinputlisting[language=R, firstline=53, lastline=53]{PS2_answers_Duc Minh, Vu.R}
+	\begin{verbatim}
+		> std_res
+		Not Stopped Bribe requested Stopped/given warning
+		Upper class   0.3220306      -1.6419565             1.5230259
+		Lower class  -0.3220306       1.6419565            -1.5230259
+	\end{verbatim}
+	Upon cross checking against the outputs generated by the built-in function in R, these "manual" calculated standardized residuals also give the same results.
+		\lstinputlisting[language=R, firstline=54, lastline=54]{PS2_answers_Duc Minh, Vu.R}
+	\begin{verbatim}
+		> chisq.test(crossroad_data_tbl)$stdres
+		Not Stopped Bribe requested Stopped/given warning
+		Upper class   0.3220306      -1.6419565             1.5230259
+		Lower class  -0.3220306       1.6419565            -1.5230259
+	\end{verbatim}
+
+	\item \textbf{How might the standardized residuals help interpret the results?} \\
+	Although the p-value can provide us with evidence to make conclusion on whether the variables are dependennt/associated or not, it doesn't tell us anything about the nature or strength of the association if there is any. It also doesn't indicate whether all cells or just one or two cells that deviate greatly from independence. \\
+	The standardized residuals help providing us with these information, as they acts like a z-scores to show if a residual for each cell is large enough to indicate a deviation from independence. The standardized residuals follow a standard normal distribution, in which they fluctuate around the mean of 0 and with a standard deviation of 1. According to the empirical rule, 95\% of the observations fall within two standard deviations from the mean. \\
+	From our results, the standardized residuals for all cells are smaller than two, which doesn't indicate from independence. None of the cell are more or less than what we would expected if the variables were truly independent. This helps us to be more confident about the conclusion from part (c), but we would still need the $\chi^2$ test to make conclusions.
+\end{enumerate}
+
+	\section*{Question 2: Economics}
+	\noindent The subset of the data on female politicians will first be imported into R for analysis.
+		\lstinputlisting[language=R, firstline=59, lastline=59]{PS2_answers_Duc Minh, Vu.R}
+	\begin{enumerate} [(a)]
+	\item \textbf{State a null and alternative (two-tailed) hypothesis} \\
+	Our concern is the effect of the reservation policy on the number of new or repaired drinking water facilities in the villages. Therefore, the hypotheses of interest are: \\
+	$\bullet$ The null hypothesis: having the village council heads reserved for woman \textbf{doesn't change} the number of new or repaired drinking water facilities in villages.
+		$${\textbf{H\textsubscript{0}: $\beta$ = 0}}$$
+	$\bullet$ The alternative hypothesis: The reservation policy \textbf{has an effect} on  the number of new or repaired drinking water facilities in villages
+		$${\textbf{H\textsubscript{1}: $\beta$ $\neq$ 0}}$$
+		
+	\item \textbf{Run a bivariate regression to test (a) hypothesis} \\
+	For our analysis, the dependent or outcome variable is the change in the number of drinking water facilities in a village which is the "water" variable in the dataset. The independent or explanatory variable is whether if the reservation policy is in employed or in other words if there are reserved seats for woman leaders in a village, which is the "reserved" variable in the dataset. \\
+		\lstinputlisting[language=R, firstline=65, lastline=67]{PS2_answers_Duc Minh, Vu.R}
+		\begin{verbatim}
+			> summary(female_policy_model)
+			
+			Call:
+			lm(formula = water ~ reserved, data = female_policy_data)
+			
+			Residuals:
+			Min      1Q  Median      3Q     Max 
+			-23.991 -14.738  -7.865   2.262 316.009 
+			
+			Coefficients:
+			Estimate Std. Error t value Pr(>|t|)    
+			(Intercept)   14.738      2.286   6.446 4.22e-10 ***
+			reserved       9.252      3.948   2.344   0.0197 *  
+			---
+			Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+			
+			Residual standard error: 33.45 on 320 degrees of freedom
+			Multiple R-squared:  0.01688,	Adjusted R-squared:  0.0138 
+			F-statistic: 5.493 on 1 and 320 DF,  p-value: 0.0197
+		\end{verbatim}
+	
+	\item \textbf{Interpret the coefficient estimate for reservation policy} \\
+	Based on the regression analysis, the estimated coefficient for reservation policy is 9.252. So, there is a positive relation between reservation policy and the number of new/repaired drinking-water facilities. For every increase in reserved seats for female politicians, the number of new/repaired drinking-water facilities increase by 9.252, or in other words, having a seat reserved for a woman in the village heads increase the number of drinking-water facilities by 9.252 units.
+	Since p-value is below $\alpha$ = 0.05 threshold (0.0197 < 0.05), there is sufficient statistical evidence that the estimated coefficient is different from 0 at the 95\% confidence level.
+	\end{enumerate}
+\end{document}
