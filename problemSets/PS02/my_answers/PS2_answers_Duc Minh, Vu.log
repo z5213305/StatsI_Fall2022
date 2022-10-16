@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8.28) (preloaded format=pdflatex 2022.9.23)  10 OCT 2022 13:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8.28) (preloaded format=pdflatex 2022.9.23)  16 OCT 2022 14:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1042,25 +1042,38 @@ consecutive:
 consecutive:
 ) (PS2_answers_Duc Minh, Vu.R
 consecutive:
-) [4] (PS2_answers_Duc Minh, Vu.R
-consecutive:
 )
-Underfull \hbox (badness 10000) in paragraph at lines 186--188
+Underfull \hbox (badness 10000) in paragraph at lines 169--170
 
  []
 
 (PS2_answers_Duc Minh, Vu.R
 consecutive:
-) [5] [6] (PS2_answers_Duc Minh, Vu.aux)
+) [4] (PS2_answers_Duc Minh, Vu.R
+consecutive:
+) [5] (PS2_answers_Duc Minh, Vu.R
+consecutive:
+) (PS2_answers_Duc Minh, Vu.R
+consecutive:
+) [6]
+
+LaTeX Warning: Command \textless invalid in math mode on input line 231.
+
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 231.
+
+LaTeX Warning: Command \textless invalid in math mode on input line 231.
+
+[7] (PS2_answers_Duc Minh, Vu.aux)
 Package rerunfilecheck Info: File `"PS2_answers_Duc Minh, Vu".out' has not chan
 ged.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 29284 strings out of 475389
- 524617 string characters out of 2777000
- 1244187 words of memory out of 3000000
- 50057 multiletter control sequences out of 15000+600000
+ 29304 strings out of 475389
+ 524843 string characters out of 2777000
+ 1231212 words of memory out of 3000000
+ 50061 multiletter control sequences out of 15000+600000
  482614 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,8n,89p,3260b,2169s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -1082,9 +1095,9 @@ ts/cm/cmr6.pfb><C:/Users/Admin/AppData/Local/Programs/MiKTeX/fonts/type1/public
 nts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/Admin/AppData/Local/Programs/
 MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/Admin/AppData/Local/P
 rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on "PS2_answers_Duc Minh, Vu.pdf" (6 pages, 209277 bytes).
+Output written on "PS2_answers_Duc Minh, Vu.pdf" (7 pages, 215627 bytes).
 PDF statistics:
- 184 PDF objects out of 1000 (max. 8388607)
- 62 named destinations out of 1000 (max. 500000)
+ 204 PDF objects out of 1000 (max. 8388607)
+ 74 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

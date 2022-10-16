@@ -52,6 +52,12 @@ se <- as.table(sqrt(se))
 #Calculate standardized residuals
 std_res <- (crossroad_data_tbl - expected_value)/se
 chisq.test(crossroad_data_tbl)$stdres
+
+#Constructing a table with the original observations along with the residuals
+obs_with_res = matrix((paste(crossroad_data_tbl, "(", round(std_res,3),")")), nrow = 2, ncol = 3)
+rownames(obs_with_res) <- c("Upper class", "Lower class")
+colnames(obs_with_res) <- c("Not Stopped", "Bribe requested", "Stopped/given warning")
+obs_with_res_tbl <- as.table(obs_with_res)
   
 
 ##### Question 2: Economics #####
@@ -62,21 +68,11 @@ head(female_policy_data)
 unique(female_policy_data$village)
 
 ### 2(b) Run a bivariate regression to test hypothesis
+# Manual calculation of alpha and beta:
+beta = with(female_policy_data,sum((water - mean(water))*(reserved - mean(reserved)))/sum((reserved - mean(reserved))^2))
+alpha = with(female_policy_data, mean(water) - beta*mean(reserved))
+
 # A regression modelling with water as the independent/outcome variable and indication of seats reserved for woman
 female_policy_model <- lm(data = female_policy_data, water ~ reserved)
 summary(female_policy_model)
 
-
-
-expectedValues <- outer(row_total, col_total, "*") / total
-
-trafficViolations <- matrix(c(14, 6, 7, 7, 7, 1), byrow=T, nrow=2)
-rownames(trafficViolations) <- c("Upper class", "Lower class")
-colnames(trafficViolations) <- c("Not stopped", "Bribe", "Stopped/warned")
-asdasd <- as.table(trafficViolations)
-
-prop_expected_value <- prop.table(expected_value)
-se <- sqrt(expected_value*(1 - row_total/total)*(1 - col_total/total))
-se_2_1 <- row_total*col_total*((total - row_total)*(total - col_total)/total^3)
-se_2_2 <- row_total[2]*col_total*((total - row_total[2])*(total - col_total)/total^3)
-se_2 <- as.table(rbind(se_2_1, se_2_2))

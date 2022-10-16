@@ -134,12 +134,12 @@ Lower class           7               7                     1
 			> p_value
 			[1] 0.1502306
 		\end{verbatim}
-	which gives the p-value of 0.1502. Since our p-value is larger than $\alpha$, we fail to reject the null hypothesis that the police officers' class and their bribe behaviour are independent.
+	which gives the p-value of 0.1502. Since our p-value is larger than $\alpha$, we don't have enough evidence to reject the null hypothesis that the police officers' class and their bribe behaviour are independent.
 	
 	\item \textbf{Calculate standardized residuals} \\
 	The \textbf{\textit{standardized residual}} for a cell is:
 		$$ z = \frac{f\textsubscript{\textit{o}} - f\textsubscript{\textit{e}}}{se}$$
-	As the obersved and expected frequency are known, the standard error (\textit{se}) of $f\textsubscript{\textit{o}}$ - $f\textsubscript{\textit{e}}$, presuming the null hypothesis is true,  is calculated as:
+	As the obersved and expected frequency are known, the standard error (\textit{se}) of $f\textsubscript{\textit{o}}$-$f\textsubscript{\textit{e}}$ (presuming the null hypothesis is true) is calculated as:
 		$$ se = \sqrt{f\textsubscript{\textit{e}}*(1 - row \; porportion)*(1 - column \; proportion)}$$
 		\lstinputlisting[language=R, firstline=39, lastline=50]{PS2_answers_Duc Minh, Vu.R}
 	The calculated standard errors for each cell is:
@@ -167,14 +167,21 @@ Lower class           7               7                     1
 	\end{verbatim}
 
 	\item \textbf{How might the standardized residuals help interpret the results?} \\
+		\lstinputlisting[language=R, firstline=56, lastline=60]{PS2_answers_Duc Minh, Vu.R}
+		\begin{verbatim}
+			> obs_with_res_tbl
+			Not Stopped  Bribe requested Stopped/given warning
+			Upper class 14 ( 0.322 ) 6 ( -1.642 )    7 ( 1.523 )          
+			Lower class 7 ( -0.322 ) 7 ( 1.642 )     1 ( -1.523 )  
+		\end{verbatim}
 	Although the p-value can provide us with evidence to make conclusion on whether the variables are dependennt/associated or not, it doesn't tell us anything about the nature or strength of the association if there is any. It also doesn't indicate whether all cells or just one or two cells that deviate greatly from independence. \\
 	The standardized residuals help providing us with these information, as they acts like a z-scores to show if a residual for each cell is large enough to indicate a deviation from independence. The standardized residuals follow a standard normal distribution, in which they fluctuate around the mean of 0 and with a standard deviation of 1. According to the empirical rule, 95\% of the observations fall within two standard deviations from the mean. \\
-	From our results, the standardized residuals for all cells are smaller than two, which doesn't indicate from independence. None of the cell are more or less than what we would expected if the variables were truly independent. This helps us to be more confident about the conclusion from part (c), but we would still need the $\chi^2$ test to make conclusions.
+	From our results, the standardized residuals for all cells are smaller than two, which doesn't indicate deviance from independence. None of the cell are more or less than what we would expected if the variables were truly independent. This helps us to be more confident about the conclusion from part (c), but we would still need the $\chi^2$ test to make conclusions.
 \end{enumerate}
 
 	\section*{Question 2: Economics}
 	\noindent The subset of the data on female politicians will first be imported into R for analysis.
-		\lstinputlisting[language=R, firstline=59, lastline=59]{PS2_answers_Duc Minh, Vu.R}
+		\lstinputlisting[language=R, firstline=64, lastline=65]{PS2_answers_Duc Minh, Vu.R}
 	\begin{enumerate} [(a)]
 	\item \textbf{State a null and alternative (two-tailed) hypothesis} \\
 	Our concern is the effect of the reservation policy on the number of new or repaired drinking water facilities in the villages. Therefore, the hypotheses of interest are: \\
@@ -185,7 +192,18 @@ Lower class           7               7                     1
 		
 	\item \textbf{Run a bivariate regression to test (a) hypothesis} \\
 	For our analysis, the dependent or outcome variable is the change in the number of drinking water facilities in a village which is the "water" variable in the dataset. The independent or explanatory variable is whether if the reservation policy is in employed or in other words if there are reserved seats for woman leaders in a village, which is the "reserved" variable in the dataset. \\
-		\lstinputlisting[language=R, firstline=65, lastline=67]{PS2_answers_Duc Minh, Vu.R}
+	Bivariate regression involves fitting a linear straight-line equation $\hat{y} = \alpha + x.\beta$ to the observed data. The least square estimates of $\alpha$ and $\beta$ are the best estimates for this equation, as it has the minimum value for the residual sum of squares which is the difference between what is expected and what is observed. The formulas to calculate these estimates are as followed:
+		$$ \beta = \frac{\sum (x - \bar{x}).(y - \bar{y})}{\sum (x - \bar{x})^2} \; \; and \; \; \alpha = \bar{y} - \beta.\bar{x}$$ 
+	Using these formulas, the value for $\alpha$ and $\beta$ are calculated
+		\lstinputlisting[language=R, firstline=71, lastline=73]{PS2_answers_Duc Minh, Vu.R}
+		\begin{verbatim}
+			> beta
+			[1] 9.252423
+			> alpha
+			[1] 14.73832
+		\end{verbatim}
+	which give the result of $\alpha$ = 14.74 and $\beta$ = 9.252. The regression function is then $\hat{y}$ = 14.74 + x.9.252. The built-in R function for linear regression is also ran, which provides the same results for the estimates.
+		\lstinputlisting[language=R, firstline=75, lastline=77]{PS2_answers_Duc Minh, Vu.R}
 		\begin{verbatim}
 			> summary(female_policy_model)
 			
@@ -210,6 +228,6 @@ Lower class           7               7                     1
 	
 	\item \textbf{Interpret the coefficient estimate for reservation policy} \\
 	Based on the regression analysis, the estimated coefficient for reservation policy is 9.252. So, there is a positive relation between reservation policy and the number of new/repaired drinking-water facilities. For every increase in reserved seats for female politicians, the number of new/repaired drinking-water facilities increase by 9.252, or in other words, having a seat reserved for a woman in the village heads increase the number of drinking-water facilities by 9.252 units.
-	Since p-value is below $\alpha$ = 0.05 threshold (0.0197 < 0.05), there is sufficient statistical evidence that the estimated coefficient is different from 0 at the 95\% confidence level.
+	Since p-value is below $\alpha$ = 0.05 threshold (0.0197 $\textless$ 0.05), there is sufficient statistical evidence that the estimated coefficient is different from 0 at the 95\% confidence level.
 	\end{enumerate}
 \end{document}
