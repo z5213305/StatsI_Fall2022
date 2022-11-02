@@ -13,7 +13,7 @@ dat <- dat %>%
   mutate(Ddate = as.Date(dat$DocumentDate))
 
 # save to file
-saveRDS(dat, "/house_data.rds")
+saveRDS(dat, "data/house_data.rds")
 
 # load in data
-dat <- readRDS("/house_data.rds")
+dat <- readRDS("data/house_data.rds")
