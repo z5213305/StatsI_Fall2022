@@ -1,4 +1,0 @@
-obs_with_res = matrix((paste(crossroad_data_tbl, "(", round(std_res,3),")")), nrow = 2, ncol = 3)
-rownames(obs_with_res) <- c("Upper class", "Lower class")
-colnames(obs_with_res) <- c("Not Stopped", "Bribe requested", "Stopped/given warning")
-obs_with_res_tbl <- as.table(obs_with_res)
