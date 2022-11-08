@@ -1,0 +1,337 @@
+---
+title: "POL40950: Introduction to Statistics"
+subtitle: 'Homework 1'
+author: "Duc Minh, VU (19211157)"
+output: 
+ html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    self-contained: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## Instructions
+
+- Rename this file to LASTNAME_FIRSTNAME_homework01.qmd and insert your name at the preamble of this script (see `INSERT YOUR NAME`).
+- If an answer to a question requires code, add the code in the code chunk below. You find information on how to create and customise code chunks at: <https://quarto.org/docs/computations/execution-options.html>. In this assignment, you do not need to customise code chunks, though.
+- For questions that need interpretations or explanations, write your answer in _italics_ (using `_` and `_` at the beginning and end of your answer) below the question.
+- Make sure to add meaningful labels for the x-axis and y-axis to all plots. I might deduct marks if you do not label the axes.
+- Note: this script will only render if you added the British Election Study survey (`dat_brexit.csv`) to the folder in which you stored this Quarto script. 
+- Please render this file as a .html document and upload the .html document to the relevant assignment folder on Brightspace.
+- If the code for one of the questions is not working, leave the code in the chunk, but change the beginning of the chunk to `{r,eval=FALSE}`. Only do this as a last resort, though.
+
+
+## Descriptive Statistics and Graphs of Baby Names in Ireland (50 points + 3 bonus points)
+
+In the first exercise, we use a dataset that contains baby names (1964–2021) for the Republic of Ireland, released annually by the Central Statistics Office. Due to confidentiality reasons, only names with at least three instances in the relevant year are included. The data frame `iebabynames`is part of the [**iebabynames** R package](https://github.com/stefan-mueller/iebabynames). You need to install two packages for this exercise: **devtools** (which allows installing packages from other sources than CRAN (which is the default)) and the **iebabynames** package. Run the following code in your _console_ **once** to install both packages.
+
+```{r,eval=FALSE}
+# execute these lines in your console (only once!)
+# install.packages("devtools")
+# devtools::install_github("stefan-mueller/iebabynames",force = TRUE)
+```
+
+1. After installing the package in your console, we load the **iebabynames** package and **tidyverse**. Inspect the data frame `iebabynames`. What is the number of observations? What is the unit of analysis in this dataset? [5 points]
+
+```{r}
+#| message: false
+library(iebabynames)
+# also load the tidyverse
+library(tidyverse)
+library(tidyr)
+library(ggrepel)
+
+head(iebabynames)
+summary(iebabynames)
+nrow(iebabynames)
+
+#Double checking what "prop" variable measure
+prop_recalculated <- iebabynames %>%
+  filter(year==2020) %>% 
+  mutate(prop_recal = n/sum(n))
+unique(prop_recalculated$prop == prop_recalculated$prop_recal)
+
+#Double checking what "prop_sex" variable measure
+prop_sex_recalculated <- iebabynames %>%
+  filter(sex == "Male", year ==2020) %>% 
+  mutate(prop_sex_recal = n/sum(n))
+unique(prop_sex_recalculated$prop_sex == prop_sex_recalculated$prop_sex_recal)
+```
+_There are 74,661 observations for 6 variables which are:_
+<br>
+_- year: the year the baby were born_
+<br>
+_- sex: gender of the baby_
+<br>
+_- name: name given to the baby_
+<br>
+_- n: the number of babies born with a particular name for a given sex in a given year_
+<br>
+_- rank: ranking of popularity for a given name in a given year_
+<br>
+_- prop: the proportion for the usage a given name against all the names used in a given year OR proportion of babies with the given name in a given year_
+<br>
+_- prop sex: the proportion for the usage a given name against all the names used in a given year for a given sex_
+<br>
+_The unit of analysis is the popularity or counts of an Irish name for a given sex in a given year OR the number of children of each sex with a given name for each year from 1964 to 2021_
+<br>
+
+2. Filter only observations that contain information on your own name. If your name does not appear in the dataset, go to our Slack workspace and select the first name you spot. What is the number of observations of this filtered dataset? Do you have an observation for each year in the dataset (1964-2021)? [5 points]
+
+```{r}
+# 1. Filtering observations for my own name - "Minh"
+# 1.1 Filtering data based on the name - "Minh" 
+minh_count <- iebabynames %>% 
+  filter(name == "Minh")
+# 1.2 Counting the observations which show the name in each year
+nrow(minh_count) 
+
+# 2.Filtering observations for the name of "Meadhbh" 
+# 2.1 Filtering data based on the name "Meadhbh"
+meadhbh_count <- iebabynames %>% 
+  filter(name == "Meadhbh")
+# 2.2 Counting the observations which show the name in each year
+nrow(meadhbh_count) 
+# 2.3 Creating a new variable and column which contain all the year between 1964 and 2021
+years_list <- data.frame(seq(1964,2021))
+colnames(years_list) <- "year"
+nrow(years_list)
+# 2.4 Examine against the years between 1964 and 2021 created earlier to double check for missing year in the dataset for the name of "Meadhbh"
+years_missing_meadhbh <- merge(years_list, meadhbh_count, by = "year",all.x=T) %>% 
+  filter(is.na(name))
+print(years_missing_meadhbh$year)
+
+```
+_I first filter observations based on my name, but no results come up for the name of "Minh" in Ireland. So I picked a random name from our class, which is "Meadbh"._
+<br>
+_Based on the name "Meadbh", I had been able to filter the original Irish baby names dataset containing 43 observations, which means that this name is used in 43 years. Since there are 58 years between 1964 and 2021, which means that the name "Meadbh" was not used in 15 years. I then located this missing years to be: 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973, 1974, 1976, 1979, 1980, 1981._
+<br>
+
+3. Create a plot with the year on the x-axis and the count of babynames (`n`) on the y-axis. Add points for each observation to this plot (=basically, create a scatterplot). As always, make sure to add meaningful variable names. [5 points]
+
+
+```{r}
+ggplot(meadhbh_count, aes(x = year, y = n)) + 
+  geom_point() + 
+  labs( x ="Year", y = "Counts of name 'Meadhbh'")
+```
+<br>
+
+4. Add a line that connects the plot. Change the ggplot2 scheme to `theme_minimal()`. Describe the developments of the name's popularity over time. [5 points]
+
+```{r}
+ggplot(meadhbh_count, aes(x = year, y = n)) + 
+  geom_point() + 
+  labs( x ="Year", y = "Counts of name 'Meadhbh'") + 
+  geom_line() +
+  theme_minimal() +
+  geom_label_repel(aes(label = year), size = 3, max.overlaps = 7, box.padding = TRUE, color = "red")
+
+meadhbh_describe <- meadhbh_count %>% 
+  filter(year %in% c(1975, 1997, 1998, 2006, 2007, 2021))
+print(meadhbh_describe)
+```
+_The name "Meadhbh" was only started being used in Ireland since 1975. Its popularity follows a non-linear development of a curve shape. Started from three babies with this name in in 1975, the popularity follows an increasing trend, to reach the peak in 2006 with 36 babies named after "Meadhbh". Just one year after this peak, there is a sudden drop by half for this name's usage to just 17 babies in 2007 and the popularity for the name "Meadhbh" had then followed a decreasing trend to only 9 babies under this name in 2021._
+<br>
+
+5. Rerun this plot, but use the proportion instead. List one advantage of using counts and one advantage of using proportions to compare developments over time. [5 points]
+
+```{r}
+ggplot(meadhbh_count, aes(x = year, y = prop)) + 
+  geom_point() + geom_line() +
+  labs( x ="Year", y = "Proportion") +
+  scale_y_continuous(labels = scales::percent) +
+  theme_minimal()+
+  geom_label_repel(aes(label = year), size = 3, max.overlaps = 7, box.padding = TRUE, color = "red")
+
+meadhbh_describe_2 <- meadhbh_count %>% 
+  filter(year %in% c(1986,1988))
+print(meadhbh_describe_2)
+```
+_Using the raw counts have a number of advantages, which include:_
+<br>
+_- The raw data is easy to interpret and can give us a quick snapshot of a particular  name's development over the years, such as the general trend of development in the name popularity over the years._
+<br>
+_- It can be used create basic descriptive statistic (such as mean, median, standard deviation) and make some  comparison within the name development (i.e. year A has more babies with a name than year by a 3 babies... ). Such statistic would also make reporting easier, i.e. reporting most and least most frequent occurrence (min/max values)..._
+<br>
+_In general, the raw counts are probably more useful to investigate the development in the usage of a single name._
+<br>
+<br>
+_On the other hand, some advantages of using the proportional data include:_
+<br>
+_- It allows us to better study the development in the popularity of a name. This is because popularity of a name essentially means comparing a name against all other names in a given year. Therefore, the proportion allows us to make this comparison as it measures the  frequency of a name against the total of baby name usage in a given year._
+<br>
+_- Furthermore, it also allow us to make comparison for the popularity of a name across different years. The sample size are different for each year, as the number of babies born are different each year. Hence, the proportion takes into account the difference in sample size, which allow us to make better comparison across different years. For example in the case of the name "Meadhbh", although the number of babies with the name are the same between 1986 and 1988 with 10 babies, the proportion for this name actually increase slightly which can potentially means the increase in popularity._
+<br>
+
+6.  Filter the 10 most frequent male and female names (based on `rank`) in 2021 and store this filtered object as a new data frame (you can use `slice_max()` or simply filter based on the `rank` variable. Remember to use meaningful names for objects (e.g., `dat_top10_2021` instead of `dat1`). What are the counts of the most frequent male name and most frequent female name in 2021? [10 points]
+
+```{r}
+top10_name_2021_male <- iebabynames %>% 
+  filter(year == 2021, sex == "Male") %>% 
+  slice_max(-rank, n = 10)
+
+
+top10_name_2021_female <- iebabynames %>% 
+  filter(year == 2021, sex == "Female") %>% 
+  slice_max(-rank, n = 10)
+
+top10_name_all <- rbind(top10_name_2021_male, top10_name_2021_female)
+print(top10_name_all)
+```
+_The most frequent name for Male in 2021 is "Jack" with 667 babies under this name. The most frequent name for Female in 2021 is "Fiadh" with 424 babies under this name, _
+<br>
+
+7. Create a bar plot that shows the absolute counts in _descending_ order, using the data frame created in question 6. Plot the frequency (`n`) on the x-axis and the name on the y-axis. Note: since you already aggregated the data, use `geom_bar(stat = "identity")`. Use different colours of the bars for male and female names (add `fill = sex` into your `aes()` call). [10 points] 
+
+```{r}
+ggplot(top10_name_all, aes(x = n, y = reorder(name, n), fill = sex)) +
+  geom_bar(stat = "identity") + labs(x = "Name frequency (in 2021)", y = "Baby name used in 2021")
+```
+<br>
+
+8. Use the main dataset, but filter only the names "John" and "Paul". Create a faceted plot that shows the developments of frequencies (`n`) of the names `John` and `Paul` using `geom_point()` and `geom_line()`. You can use `facet_wrap(~name)` to get a box for each name. [5 points]
+
+```{r}
+John_Paul_data <- iebabynames %>%
+  filter(name %in% c("John", "Paul")) %>% 
+  group_by(name)
+
+ggplot(John_Paul_data, aes(x = year, y = n)) + 
+  geom_point() +
+  geom_line() +
+  facet_wrap(~name)
+```
+<br>
+
+9. **BONUS** What are the frequencies of both names in 1978 and 1979? What could be the reason for the drastic spike in "John" and "Paul" in 1979? [up to 3 bonus points]
+```{r}
+ggplot(John_Paul_data, aes(x = year, y = n)) + 
+  geom_point() +
+  geom_line() +
+  facet_wrap(~name) +
+  geom_label_repel(data=subset(John_Paul_data, John_Paul_data$year %in% c(1978,1979)),aes(label = year), box.padding = 2, colour = "red")
+```
+_Pope John Paul II made a historic visit to Ireland in September 1979, which coincided with the spike in the usage for this name in 1979 in Ireland. Hence, this could be the reason why the two names "John" and "Paul" suddenly gain the enormous popularity in 1979. The spike for these two names in 1978 could be resulted from the announcement of this visit or may be to commemorate the pass away of the predecessor in 29178 who was John Paul I._
+<br>
+<br>
+<br>
+
+## Analysing Survey Data: Voting Behaviour during the Brexit Referendum (50 points)
+
+This exercise uses data from the British Election Study collected shortly before the Brexit Referendum. It will help us analyse how age and education levels relate to voting "leave" or "remain". The data are described and used in Sara Hobolt's paper "The Brexit vote: a divided nation, a divided continent" published in the Journal of European Public Policy in 2016. For your information, I added the paper to the "Homeworks" folder. The dataset is part of the 7th Wave of the British Election Study, constituting the pre-campaign "Panel Survey Study of the 2016 EU Referendum", conducted before the referendum. The sample size is much larger than usual election studies, allowing for a fine-grained analysis of vote choice based on age and education.
+
+1. What is the number of observations in this dataset? Is the survey representative of the outcome of the Brexit vote? Use `prop.table(table(dat_brexit$leave))` and compare the percentage of remain (0) and leave (=1) voters with the referendum outcome. [5 points]
+
+```{r}
+# load dataset: make sure bes_brexit.csv is in the same folder as this Quarto document
+dat_brexit <- read.csv("dat_brexit.csv", fileEncoding = "utf-8")
+head(dat_brexit)
+summary(dat_brexit)
+nrow(dat_brexit)
+
+unique(dat_brexit$vote)
+table(dat_brexit$vote)
+prop.table(table(dat_brexit$vote))
+
+unique(dat_brexit$education)
+table(dat_brexit$education, exclude = NULL)
+
+outcome = prop.table(table(dat_brexit$leave))
+print(outcome)
+```
+_There are 30,895 observation, which means this dataset contains information about 30,895 respondents. Although the sample size is significantly larger than usual election studies, the survey suffers from the problem item-non response, which can potentially make it unrepresentative of the population. This problem refers to unanswered questions, when respondents might choose to withhold information. Such problem is presence in this dataset as there are 537 participants who chose not to vote, while there are 2,314 who were still undecided about their choice. If the missing responses differ systematically from the recorded responses, the data collected will not accurately reflect the characteristics of the population. In the case of our survey, 2,314 undecided participants equal to 7% of the total response, which is larger than the difference between the votes for "Remain" and "Leave" which is ~2%. So, had these undecided participants provided their final their decisions, the final outcome would be systematically different. Furthermore, there were also 3,425 participants who chose not to disclose their educational level. _
+<br>
+_Based on the survey results, the percentage of voters for "Remain" and "Leave" were 51.18% and 48.82% respectively (14,352 voted to "Remain" vs 13,692 participants voted to "Leave"). In contrast, the percentage for the actual referendum outcome for "Remain" and "Leave" were 48% and 52%. In reality, more people voted to "Leave" than to "Remain"._
+<br>
+
+2. Remove missing values for the "leave" and "education" variables (you can use `filter(!is.na(name_of_relevant_variable))`. Then group the data frame by education level (`group_by()`) and use `summarise()` to get the proportions of respondents who voted "leave" in each education category. [Note:`leave` is a binary variable (0/1) which you can use to  calculate the proportion. Since we have only two values, coded 0 and 1, the proportion can be calculated using `mean()`.] Assign this data frame to a new object. [10 points]
+
+```{r}
+dat_brexit_edu <- dat_brexit %>% 
+  filter(!is.na(leave)) %>% 
+  filter(!is.na(education)) %>% 
+  group_by(education) %>% 
+  summarise(prop_leave = mean(leave))
+print(dat_brexit_edu)
+```
+<br>
+
+3. Re-level the education variable in the data frame created in the previous question. As always, the internet is your friend. For instance, you find a tutorial on how to order the levels of a factor at:  <https://www.statology.org/reorder-factor-levels-in-r/>. For comparability, order the education levels from "low" to "high", i.e.:
+
+- No secondary qualification
+- Secondary qualification
+- Education advanced level (A level)
+- Undergraduate degree
+- Postgraduate degree
+
+
+Afterwards, create a bar plot (again, use `geom_bar(stat = "identity`)) showing the proportions of leave votes on the horizontal x-axis and the education levels on the vertical y-axis. What could we do to make the axis labels more readable? Try to add `coord_flip()` to your graph and check whether/how it makes a difference. [10 points]
+
+```{r}
+order_of_education = c("No secondary qualification",
+                       "Secondary qualification", 
+                       "Education advanced level (A level)",
+                       "Undergraduate degree",
+                       "Postgraduate degree")
+
+dat_brexit_edu$education <- factor(dat_brexit_edu$education, levels = order_of_education)
+
+levels(dat_brexit_edu$education)
+
+dat_brexit_edu_order <- dat_brexit_edu[order(dat_brexit_edu$education),]
+
+ggplot(dat_brexit_edu_order, aes(x = prop_leave, y = education)) + geom_bar(stat = "identity") + coord_flip() + labs(x = "Proportion of leave votes", y = "Level of education")
+
+#Rotate labels so they will not overlap each other
+ggplot(dat_brexit_edu_order, aes(x = prop_leave, y = education)) + geom_bar(stat = "identity") + labs(x = "Proportion of leave votes", y = "Level of education") + coord_flip() + theme(axis.text.x = element_text(angle = 45), axis.ticks.length.x = unit(2, "cm"),) 
+
+```
+_We can make this graph more readable by rotating the axis labels so they will not overlap each other. An example is provided in the answer._
+<br>
+
+4. Interpret the graph by describing the relationship between education levels and voting "leave". [5 points]
+<br>
+_There is an inverse relationship between the education levels and voting "leave", in which the better education a person is, the less likely that one will vote "leave"._
+<br>
+
+5. What is the range of the "age" variable? What is the lowest and highest value of the "age" variable? Create a new object that groups the original data frame by age, and calculate the proportion of "leave voters" for each age. [10 points]
+
+```{r}
+range(dat_brexit$age)
+
+dat_brexit_age <- dat_brexit %>% 
+  filter(!is.na(leave)) %>% 
+  filter(!is.na(age)) %>% 
+  group_by(age) %>% 
+  summarise(prop_leave = mean(leave))
+print(dat_brexit_age)
+
+#Checking number of respondents for 97-years-old age group
+nrow(subset(dat_brexit_age, age == 97))
+```
+_The range of the age variable is between 18 and 97. The youngest participants are 18 years of age and the oldest participants are 97 years of age. Roughly 23% of participants in the 18-years-old age group voted "Leave", while 100% of participants in the 97-years-old age group voted "Leave". Upon futher checking, there is only one respondent in the 97-years-old age group, which explain the perfect score of 100% vote._
+<br>
+
+6. Create a plot with the age on the x-axis and the proportion of leave voters on the y-axis. Add `geom_smooth(method = "loess")`. Change the limits of the y-axis to a range from 0 to 1 (check out `scale_y_continuous()`). [5 points]
+
+```{r}
+ggplot(dat_brexit_age, aes(x = age, y = prop_leave)) + geom_point() + geom_smooth(method = "loess") + scale_y_continuous(limits = c(0,1)) + labs(y = "Proportion of leave votes", x = "Age group")
+```
+<br>
+
+7. Interpret the relationship between age and voting "leave". By inspecting the graph, what proportion of respondents at the ages of 18, 50, and 75 voted "leave" (roughly speaking)? [5 points]
+
+```{r}
+ggplot(dat_brexit_age, aes(x = age, y = prop_leave)) + geom_point() + geom_smooth(method = "loess") + scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +  geom_label_repel(data=subset(dat_brexit_age, age %in% c(18,50,75)),aes(label = age), box.padding = 1, colour = "red") + labs(y = "Proportion of leave votes", x = "Age group")
+```
+_In general, there is an increasing trend between age and the proportion of leave voters, as age increase the proportion of leave voters increase. Upon inspecting the graph, the proportion of respondents at the age of 18, 50 and 75 voting for "Leave" are roughly 23%, 56% and 66%._
+
+
+

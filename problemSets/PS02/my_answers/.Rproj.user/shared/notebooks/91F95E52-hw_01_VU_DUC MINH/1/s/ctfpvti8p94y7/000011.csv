@@ -1,0 +1,9 @@
+"0","prop_sex_recalculated <- iebabynames %>%
+  filter(sex == ""Male"", year ==2020) %>% 
+  mutate(prop_sex_recal = n/sum(n))
+unique(prop_sex_recalculated$prop_sex == prop_sex_recalculated$prop_sex_recal)
+"
+"1","[1]"
+"1"," TRUE"
+"1","
+"

@@ -1,0 +1,86 @@
+---
+title: "POL40950: Introduction to Statistics"
+subtitle: 'Lab Session: Week 5'
+author: "Module Coordinator: [Stefan Müller](https://muellerstefan.net)"
+date: "10 October 2022"
+output: 
+ html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+What is the Effect of the Death of the Leader on the Level of Democracy?
+
+(Based on Benjamin F. Jones and Benjamin A. Olken. 2009. "Hit or Miss? The Eﬀect of Assassinations on Institutions and War." American Economic Journal: Macroeconomics, 1 (2): 55-87.)
+
+There is a longstanding debate in the study of international relations on whether individual political leaders make a difference To explore this issue, let’s estimate the causal effect of the death of the leader on the level of democracy of a country. For this purpose, we will analyze data on assassinations and assassination attempts against political leaders from 1875 to 2004.
+
+Whether an assassination attempt occurs or not is not a random process. However, once an assassination attempt has occurred, one could argue that whether the assassination attempt is successful or not is the result of small elements of randomness, such as the timing and path of the weapon. As a result, we can consider (at least for now) that, after an assassination attempt, the death a leader is close to random and, thus, the assassination attempts where the leader ended up dying should be, on average, comparable to the assassination attempts where the leader ended up surviving. If this is true, then we can estimate the average causal eﬀect of the death of the leader by computing the diﬀerence-in-means estimator.
+
+To measure the level of democracy of the country, we will use polity scores. Polity scores categorize the regime of a country on a 21-point scale ranging from -10 (hereditary monarchy) to +10 (consolidated democracy). The Polity Project has produced polity scores for all countries from 1800 and on. For example, here are the 2018 polity scores.
+
+The dataset is in a ﬁle called `leaders.csv`. The unit of observation is assassination attempts.
+
+
+Let's load the dataset. Make sure `leaders.csv` is in thes same folder on your laptop as this qmd file.
+
+```{r,message=FALSE, warning=FALSE}
+library(tidyverse)
+
+leaders <- read.csv("leaders.csv")
+```
+
+1. What is the number of observations? What is the first and what is the last year covered in this dataset (you can use `summary()` or `min()` and `max()`).
+What does the variable `died` measure?
+```{r}
+nrow(leaders)
+summary(leaders)
+head(leaders)
+unique(leaders$died)
+```
+
+
+2. We want to predict whether `policyafter` (the polity score after the assassination) is higher if a leader died. What is the dependent variable for this research question? What is the independent (explanatory variable) in this research question?
+
+- Dependent variable: `policyafter` (the polity score after the assassination)
+- Independent variable: `died` (does the leader die from the assination)
+
+3. Use `lm()` to run a linear regression model. You can check today's slides to understand the exact syntax, but usually it's `lm(name_of_dependent_var ~ name_of_independent_var, data = name_of_dataset)`
+
+```{r}
+model_polity <- lm(data = leaders, polityafter ~ died)
+summary(model_polity)
+```
+3. What is the coefficient for `died`? What is the direction of the coefficient (positive/negative)? How would you interpret this coefficient? In other words, what is the predicted change of `polityafter` after the death of the leader through an assassination attempt?
+
+
+4. **BONUS**: from a theoretical perspective, should we consider other/additional variables in this analysis?
+
+
+5. **BONUS**: install and load the **texreg** package. Store the regression model from above as a new object (e.g., as `lm_base`). Then add this object in the `screenreg()` function.
+
+```{r}
+#install.packages("texreg")
+library("texreg")
+screenreg(model_polity)
+```
+
+6. **BONUS**: Add a more meaningful and descriptive caption to the table by adjusting the `caption` argument in `screenreg()`. 
+
+
+```{r}
+screenreg(model_polity, caption = "Predicting the polity score from assasination success")
+```
+
+7. **BONUS**: We can create a nicer table in qmd documents by using `htmlreg()` and setting the chunk option `results='asis'` (see ```{r, results = 'asis'}` below). 
+
+
+```{r, results='asis'}
+htmlreg(model_polity, caption = "Predicting the polity score from assasination success")
+```

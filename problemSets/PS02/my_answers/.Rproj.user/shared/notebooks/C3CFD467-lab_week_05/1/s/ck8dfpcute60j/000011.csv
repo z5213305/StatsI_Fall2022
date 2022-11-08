@@ -1,0 +1,25 @@
+"0","texreg(model_polity, caption = ""Predicting the polity score from assasination success"")
+"
+"1","
+\begin{table}
+\begin{center}
+\begin{tabular}{l c}
+\hline
+ & Model 1 \\
+\hline
+(Intercept) & $-1.89^{***}$ \\
+            & $(0.47)$      \\
+died        & $1.13$        \\
+            & $(1.00)$      \\
+\hline
+R$^2$       & $0.01$        \\
+Adj. R$^2$  & $0.00$        \\
+Num. obs.   & $250$         \\
+\hline
+\multicolumn{2}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+\end{tabular}
+\caption{Predicting the polity score from assasination success}
+\label{table:coefficients}
+\end{center}
+\end{table}
+"
