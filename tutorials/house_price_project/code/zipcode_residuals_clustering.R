@@ -60,3 +60,15 @@ stargazer(mod1, mod4, mod5, type = "text")
 
 ## note: when modelled as a category, the constant now includes the effect of 
 ## the reference category.
+
+# Which zipcodes are in each category?
+# dplyr approach: group_by two variables
+dat %>%
+  group_by(ZipGroup, ZipCode) %>%
+  summarise(n = n())
+
+# make a list using a for loop :(
+ZipCode <- list(NULL)
+for (i in seq_along(unique(dat$ZipGroup))) {
+  ZipCode[[i]] <- unique(dat$ZipCode[dat$ZipGroup == i])
+}
