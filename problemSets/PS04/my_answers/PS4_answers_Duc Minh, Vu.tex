@@ -1,0 +1,263 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{graphicx,textcomp}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{endnotes}
+\usepackage{lscape}
+\newtheorem{com}{Comment}
+\usepackage{float}
+\usepackage{hyperref}
+\newtheorem{lem} {Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{cor}{Corollary}
+\newtheorem{obs}{Observation}
+\usepackage[compact]{titlesec}
+\usepackage{dcolumn}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\definecolor{light-gray}{gray}{0.65}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{mathtools} 
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color,soul}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+\newcommand{\Sref}[1]{Section~\ref{#1}}
+
+\title{Submission for Problem Set 4}
+\date{Duc Minh, VU \\
+	TCD StudentID: 22996761 / UCD StudentID: 19211157}
+\author{Applied Stats/Quant Methods 1}
+
+\begin{document}
+	\maketitle
+	\section{Question 1} 
+	\noindent The \textit{\texttt{prestige}} dataset will first be imported and the relevant libraries will be loaded in R for analysis.
+	\lstinputlisting[language=R, firstline=7, lastline=11]{PS4_answers_Duc Minh, Vu.R}
+	\begin{enumerate}[(a)]
+		\item \textit{Creating a new variable for type of work} \\
+		Using the \textit{\texttt{ifelse}} function in R, the new variable  \textit{\texttt{professional}} has been created with value of 1 for professional \textit{\texttt{type}} and value of 0 blue and white collar \textit{\texttt{type}}.
+		\lstinputlisting[language=R, firstline=16, lastline=19]{PS4_answers_Duc Minh, Vu.R}
+		\begin{verbatim}
+		> summary(Prestige$type)
+		bc prof   wc NA's 
+		44   31   23    4 
+		> summary(Prestige$professional)
+		0    1 NA's 
+		67   31    4
+		\end{verbatim}
+	
+		\item \textit{Linear model of \textit{\texttt{prestige}} on \textit{\texttt{income}}, \textit{\texttt{professional}} and their interaction effects}. \\
+		\lstinputlisting[language=R, firstline=22, lastline=27]{PS4_answers_Duc Minh, Vu.R}
+		\begin{verbatim}
+		lm(formula = prestige ~ income + professional + income * professional, 
+		data = Prestige)
+		
+		Residuals:
+		Min      1Q  Median      3Q     Max 
+		-14.852  -5.332  -1.272   4.658  29.932 
+		
+		Coefficients:
+		Estimate Std. Error t value Pr(>|t|)    
+		(Intercept)          21.1422589  2.8044261   7.539 2.93e-11 ***
+		income                0.0031709  0.0004993   6.351 7.55e-09 ***
+		professional1        37.7812800  4.2482744   8.893 4.14e-14 ***
+		income:professional1 -0.0023257  0.0005675  -4.098 8.83e-05 ***
+		---
+		Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+		
+		Residual standard error: 8.012 on 94 degrees of freedom
+		(4 observations deleted due to missingness)
+		Multiple R-squared:  0.7872,	Adjusted R-squared:  0.7804 
+		F-statistic: 115.9 on 3 and 94 DF,  p-value: < 2.2e-16
+		\end{verbatim}
+		\begin{table}[H]
+			\begin{center}
+				\begin{tabular}{l c}
+					\hline
+					& Model 1 \\
+					\hline
+					(Intercept)          & $21.1423^{***}$ \\
+					& $(2.8044)$      \\
+					income               & $0.0032^{***}$  \\
+					& $(0.0005)$      \\
+					professional1        & $37.7813^{***}$ \\
+					& $(4.2483)$      \\
+					income:professional1 & $-0.0023^{***}$ \\
+					& $(0.0006)$      \\
+					\hline
+					R$^2$                & $0.7872$        \\
+					Adj. R$^2$           & $0.7804$        \\
+					Num. obs.            & $98$            \\
+					\hline
+					\multicolumn{2}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+				\end{tabular}
+				\caption{Regressing prestige on income, professional type and their interaction effect}
+				\label{table:coefficients}
+			\end{center}
+		\end{table}
+	
+		\item \textit{Prediction equation}
+		$$\hat{y}\textsubscript{Prestige} = \hat{\beta\textsubscript{0}} + \hat{\beta\textsubscript{1}} \times \textit{x}\textsubscript{income} + \hat{\beta\textsubscript{2}} \times \textit{x}\textsubscript{professional} + \hat{\beta\textsubscript{3}} \times \textit{x}\textsubscript{professional} \times \textit{x}\textsubscript{income} $$
+		$$ \textit{\texttt{Prestige}} = 21.1423 + 0.0032 \times \textit{\texttt{Income}} + 37.7813 \times \textit{\texttt{Professional}} - 0.0023 \times \textit{\texttt{Income}} \times \textit{\texttt{Professional}} $$
+		
+		\item \textit{Interpreting \textit{\texttt{Income}} coefficient}\\
+		The coefficient for \textit{\texttt{Income}} is 0.0032 which reflects a positive relationship between \textit{\texttt{Income}} and \textit{\texttt{Prestige}} score. Holding other terms in the model constant, a one unit increase in \textit{\texttt{Income}} is predicted to, on average, increase \textit{\texttt{Prestige}} by 0.0032.
+		
+		\item \textit{Interpreting \textit{\texttt{Professional}} coefficient}\\
+		The coefficient for \textit{\texttt{Professional}} is 37.7813. It should be noted that \textit{\texttt{Professional}} is a dummy variable with \textit{\texttt{Non-Professional}}(blue and white collars) as the baseline group, so the coefficient will be the 'offset' relative to the baseline group. Hence, holding \textit{\texttt{Income}} constant, the prestige score is predicted to be, on average, 37.7813 higher for people in the \textit{\texttt{Professional}} occupation group in comparison to \textit{\texttt{Non-Professional}} occupation group of blue and white collars.
+		
+		\item Marginal effect of a \$1,000 increase in income on prestige for professional occupations \\
+		1. \textit{\texttt{Prestige}} score for a person with a professional occupation and with an \textit{\texttt{Income}} of \$1,000:
+		$$\textit{\texttt{Prestige}} = 21.1423 + 0.0032 \times \textit{\texttt{Income}} + 37.7813 \times \textit{\texttt{Professional}} - 0.0023 \times \textit{\texttt{Income}} \times \textit{\texttt{Professional}}$$
+		$$ \textit{\texttt{Prestige}} = 21.1423 + 0.0032 \times 1,000 + 37.7813 \times 1 - 0.0023 \times 1 \times 1,000 $$
+		$$ \textit{\texttt{Prestige}} =  59.8326 $$
+		A person with a professional occupation and an income of \$1,000 is predicted to have a prestige score of 59.8326.\\
+		\lstinputlisting[language=R, firstline=30, lastline=30]{PS4_answers_Duc Minh, Vu.R}
+		\begin{verbatim}
+		> presti.part.f_diff
+		[1] 0.9
+		\end{verbatim}
+		
+		2. \textit{\texttt{Prestige}} score for a person with a professional occupation and with 0 \textit{\texttt{Income}}:
+		$$\textit{\texttt{Prestige}} = 21.1423 + 0.0032 \times \textit{\texttt{Income}} + 37.7813 \times \textit{\texttt{Professional}} - 0.0023 \times \textit{\texttt{Income}} \times \textit{\texttt{Professional}}$$
+		$$ \textit{\texttt{Prestige}} = 21.1423 + 0.0032 \times 0 + 37.7813 \times 1 - 0.0023 \times 1 \times 0 $$
+		$$ \textit{\texttt{Prestige}} =  58.9236 $$
+		A person with a professional occupation and no income is predicted to have a prestige score of 58.9236.\\
+		\lstinputlisting[language=R, firstline=31, lastline=31]{PS4_answers_Duc Minh, Vu.R}
+		\begin{verbatim}
+		> presti.part.f_2
+		[1] 58.9236
+		\end{verbatim}
+	
+		3. Hence, the marginal effect or difference of prestige point for professional going from \$0 to \$1,000 is 59.8326 - 58.9236 = 0.9.
+		\lstinputlisting[language=R, firstline=32, lastline=32]{PS4_answers_Duc Minh, Vu.R}
+		\begin{verbatim}
+		> presti.part.f_diff
+		[1] 0.9
+		\end{verbatim}
+		
+		\item Marginal effect of \textit{\texttt{Professional}} jobs when the variable \textit{\texttt{Income}} takes the value of \$6,000 \\
+		1. \textit{\texttt{Prestige}} score for a person with a professional occupation and with an \textit{\texttt{Income}} of \$6,000:
+		$$\textit{\texttt{Prestige}} = 21.1423 + 0.0032 \times \textit{\texttt{Income}} + 37.7813 \times \textit{\texttt{Professional}} - 0.0023 \times \textit{\texttt{Income}} \times \textit{\texttt{Professional}}$$
+		$$ \textit{\texttt{Prestige}} = 21.1423 + 0.0032 \times 6,000 + 37.7813 \times 1 - 0.0023 \times 1 \times 1,000 $$
+		$$ \textit{\texttt{Prestige}} =  64.3236 $$
+		A person with a professional occupation and an income of \$6,000 is predicted to have a prestige score of 64.3236.\\
+		\lstinputlisting[language=R, firstline=36, lastline=36]{PS4_answers_Duc Minh, Vu.R}
+		\begin{verbatim}
+		> presti.part.g.prof
+		[1] 64.3236
+		\end{verbatim}
+		
+		2. \textit{\texttt{Prestige}} score for a person with a NON-professional occupation and with an \textit{\texttt{Income}} of \$6,000:
+		$$\textit{\texttt{Prestige}} = 21.1423 + 0.0032 \times \textit{\texttt{Income}} + 37.7813 \times \textit{\texttt{Professional}} - 0.0023 \times \textit{\texttt{Income}} \times \textit{\texttt{Professional}}$$
+		$$\textit{\texttt{Prestige}} = 21.1423 + 0.0032 \times 6,000 + 37.7813 \times 0 - 0.0023 \times 0 \times 1,000$$
+		$$ \textit{\texttt{Prestige}} =  40.3423 $$
+		A person with a NON-professional occupation and an income of \$6,000 is predicted to have a prestige score of 40.3423.\\
+		\lstinputlisting[language=R, firstline=37, lastline=37]{PS4_answers_Duc Minh, Vu.R}
+		\begin{verbatim}
+		> presti.part.g.non.prof
+		[1] 40.3423
+		\end{verbatim}
+	
+		3. And finally, for a person with an income of \$6,000, the marginal effect or difference of prestige point in changing the occupation is 64.3236 - 40.3423 = 23.9813.
+		\lstinputlisting[language=R, firstline=38, lastline=38]{PS4_answers_Duc Minh, Vu.R}
+		\begin{verbatim}
+		> presti.part.g.diff
+		[1] 23.9813
+		\end{verbatim}
+	\end{enumerate}
+
+	\section{Question 2}
+	\begin{enumerate} [(a)]
+		\item Conducting hypothesis test for having yard signs in predicting vote share \\
+		Since we are concerned with whether having yard signs have any effect at all on the vote share, it will be a 2-sided hypothesis test. Therefore, \\
+		$\bullet$ The null hypothesis is: having yard sign has NO effect on the vote share:
+			$${\textbf{H\textsubscript{0}: $\beta\textsubscript{yard sign}$ = 0}}$$
+		$\bullet$ The alternative hypothesis is: having yard sign has an effect on the vote share:
+			$${\textbf{H\textsubscript{0}: $\beta\textsubscript{yard sign}$ $\neq$ 0}}$$
+		$\bullet$ The test statistic is:
+		$${t = \frac{\beta\textsubscript{yard sign}	 - \mu\textsubscript{0}}{\textit{se}}} = \frac{0.042 - 0}{0.016} = 2.625 $$
+		\lstinputlisting[language=R, firstline=43, lastline=43]{PS4_answers_Duc Minh, Vu.R}
+		\begin{verbatim}
+		> test.stat.yard
+		[1] 2.625
+		\end{verbatim}
+		$\bullet$ With 131 observations and 2 variables in the regression model, the degrees of freedom is: 131 - 2 - 1 = 128. The associated p-value for the above test statistic is:
+		\lstinputlisting[language=R, firstline=44, lastline=44]{PS4_answers_Duc Minh, Vu.R}
+		\begin{verbatim}
+		> p.val.yard
+		[1] 0.00972002
+		\end{verbatim}
+		which provides the value of 0.00972. \\
+		$\bullet$ With $\alpha$ = 0.05 which is larger than our calculated p-value of 0.00972, we can reject the null hypothesis H\textsubscript{0} and say that posting signs around the precint has a positive effect on the vote share. 
+		
+		\item Conducting hypothesis test for being next to precincts with these yard signs in predicting vote share \\
+		Same as part (a), this will be a 2-sided test, since we are concerning with if there is any affect at all. Therefore: \\
+		$\bullet$ The null hypothesis is: being next to precincts with yard signs has NO effect on the vote share:
+		$${\textbf{H\textsubscript{0}: $\beta$\textsubscript{neighbour} = 0}}$$
+		$\bullet$ The alternative hypothesis is: being next to precincts with yard signs has an effect on the vote share:
+		$${\textbf{H\textsubscript{0}: $\beta$\textsubscript{neighbour} $\neq$ 0}}$$
+		$\bullet$ The test statistic is:
+		$${t = \frac{\beta\textsubscript{neighbour}	 - \mu\textsubscript{0}}{\textit{se}}} = \frac{0.042 - 0}{0.013} = 3.231 $$
+		\lstinputlisting[language=R, firstline=47, lastline=47]{PS4_answers_Duc Minh, Vu.R}
+		\begin{verbatim}
+		> test.stat.nxt
+		[1] 3.230769
+		\end{verbatim}
+		$\bullet$ With a degree of freedom of 128, the associated p-value for the above test statistic is:
+		\lstinputlisting[language=R, firstline=44, lastline=44]{PS4_answers_Duc Minh, Vu.R}
+		\begin{verbatim}
+		> p.val.nxt
+		[1] 0.00156946
+		\end{verbatim}
+		which provides the value of 0.00157. \\
+		$\bullet$ With $\alpha$ = 0.05 which is larger than our calculated p-value of 0.00972, we can reject the null hypothesis H\textsubscript{0} and say that being in a precint next to a precint in the treatment group has a positive effect on the vote share.
+		
+		\item Interpreting the coefficent for the constant term \\
+		The two independent variables are all dummy variables, since both sign post and location are yes/no answers. Hence, the constant term is the basline level for the expected value of independent variables or when when the dummy varaibles are the baseline group. So the constant term is the average vote share that went to Cuccinelli, when a precint is NOT assigned with a lawn sign and NOT adjacent to a precint with a lawn sign, which is 0.302. It has a test statistic of 27.45 with a very small p-value which indicates that this constant is significance.
+		
+		\item Model fit\\
+		To evaluate the fit of a model, we use the $\textit{R}^2$ value, which shows the proportion of variance in the dependent variable that can be explained by the independent variables. The $\textit{R}^2$ value for the current model is 0.094 which is quite small, as only 9.4\% of the variance in the vote share is explained by the location of yard sign and the location of the precint. Indeed, yard sign have a valuable contribution in explaining vote share with its strong statistical evidence. However, it only accounts for a small proportion of variation in vote share. There are still ~90\% of unexplained variances which shows that there other factors that can explain vote share.
+	\end{enumerate}
+\end{document}
