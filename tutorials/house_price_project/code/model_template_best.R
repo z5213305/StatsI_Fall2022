@@ -1,14 +1,12 @@
-##############################
-# Final model script: Team E #
-##############################
+##################################
+# Final model script: Best model #
+##################################
 
 ### Note: fill in the code below until the line.
 ### Make sure your model works as expected by running summary().
 
 # Load any packages here
 library(tidyverse)
-library(data.table)
-library(stargazer)
 
 # Load training data
 train <- readRDS("data/train.rds")
@@ -26,8 +24,8 @@ train <- train %>%
   left_join(select(zip_group, ZipCode, ZipGroup), by = "ZipCode")
 
 # Model
-mod <- lm(AdjSalePrice ~ SqFtTotLiving + as.factor(ZipGroup) + as.factor(BldgGrade)
-          , 
+mod <- lm(AdjSalePrice ~ SqFtTotLiving + I(SqFtTotLiving^2) + as.factor(ZipGroup) + as.factor(BldgGrade) +
+          SqFtTotLiving:as.factor(ZipGroup),
           data = train,
           na.action = na.omit)
 
@@ -39,7 +37,7 @@ summary(mod)
 test <- readRDS("data/test.rds")
 
 # Transform test data
-test <- test %>%
+test <- test %>% 
   left_join(select(zip_group, ZipCode, ZipGroup), by = "ZipCode")
   
 # Run model on test data

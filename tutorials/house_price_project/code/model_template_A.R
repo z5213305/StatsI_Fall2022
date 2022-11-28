@@ -16,14 +16,14 @@ library(dplyr)
 train <- readRDS("data/train.rds")
 
 # Data transformation
-zip_group <- dat %>%
+zip_group <- train %>%
   group_by(ZipCode) %>%
   summarise(med_price = median(SalePrice),
             count = n()) %>%
   arrange(med_price) %>%
   mutate(cumul_count = cumsum(count),
          ZipGroup = ntile(cumul_count, 5))
-dat <- dat %>%
+train <- train %>%
   left_join(select(zip_group, ZipCode, ZipGroup), by = "ZipCode")
   
   
@@ -35,12 +35,6 @@ mod <- lm(AdjSalePrice ~ SqFtTotLiving + YrBuilt,
           na.action = na.omit)
 
 summary(mod)
-
-
-Decade <- list(NULL)
-for (i in seq_along(unique(train$YrBuilt))) {
-  YrBuild[[i]] <- unique(train$YrBuild[train$YrBuild == i])
-}
 
 # Model Marcus
 mod1 <- lm(AdjSalePrice ~ SqFtFinBasement,
@@ -58,7 +52,7 @@ par(mfrow = c(2,2))
 plot(mod1)
 
 # Model Natasha 
-mod4 <- lm(AdjSalePrice ~ SqFtTotLiving + BldgGrade + ZipGroup, data = dat)
+mod4 <- lm(AdjSalePrice ~ SqFtTotLiving + BldgGrade + ZipGroup, data = train)
 
 stargazer(mod4, type = "latex")
 
@@ -68,8 +62,15 @@ stargazer(mod4, type = "latex")
 test <- readRDS("data/test.rds")
 
 # Transform test data
-test <- test %>% 
-  # I will copy/paste here the code you use above
+zip_group <- test %>%
+  group_by(ZipCode) %>%
+  summarise(med_price = median(SalePrice),
+            count = n()) %>%
+  arrange(med_price) %>%
+  mutate(cumul_count = cumsum(count),
+         ZipGroup = ntile(cumul_count, 5))
+test <- test %>%
+  left_join(select(zip_group, ZipCode, ZipGroup), by = "ZipCode")
   
 # Run model on test data
 test$prediction <- predict(mod, newdata = test)

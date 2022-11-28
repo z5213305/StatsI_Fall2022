@@ -1,11 +1,12 @@
-##############################
+################################
 # Final model script: Team ucd #
-##############################
+################################
 
 ### Note: fill in the code below until the line.
 ### Make sure your model works as expected by running summary().
 
 # Load any packages here
+library(tidyverse)
 
 # Load training data
 train <- readRDS("data/train.rds")
@@ -36,8 +37,16 @@ summary(mod)
 test <- readRDS("data/test.rds")
 
 # Transform test data
-test <- test %>% 
-  # I will copy/paste here the code you use above
+zip_group_pr <- test %>%
+  group_by(ZipCode) %>%
+  summarise(med_price = median(AdjSalePrice), 
+            count = n()) %>%
+  arrange(med_price) %>%
+  mutate(cumul_count = cumsum(count),
+         ZipGroup = ntile(cumul_count, 5))
+
+test <- test %>%
+  left_join(select(zip_group_pr, ZipCode, ZipGroup), by = "ZipCode")
   
 # Run model on test data
 test$prediction <- predict(mod, newdata = test)

@@ -1,5 +1,5 @@
 ##############################
-# Final model script: Team _ #
+# Final model script: Team C #
 ##############################
 
 ### Note: fill in the code below until the line.
@@ -49,7 +49,7 @@ test <- readRDS("data/test.rds")
 
 # Transform test data
 test <- test %>% 
-  # I will copy/paste here the code you use above
+  left_join(select(zip_group, ZipCode, ZipGroup), by = "ZipCode")
   
 # Run model on test data
 test$prediction <- predict(mod, newdata = test)
